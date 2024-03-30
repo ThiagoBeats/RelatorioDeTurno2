@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relatório de turno</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <main>
+      <div class="mainDiv">
+        <div class="Left">
+          <div>
+            <label for="Name">Nome</label>
+            <input
+              type="text"
+              name="Name"
+              id="Nome"
+              autocomplete="given-name"
+              onchange="atualizaParams()"
+            />
+          </div>
+          <div>
+            <label for="matricula" onchange="atualizaParams()">Matricula </label>
+            <input
+              type="text"
+              name="matricula"
+              id="Matricula"
+              autocomplete="matricula"
+              onchange="atualizaParams()"
+            />
+          </div>
+          <div>
+            <label for="turno">Turno</label>
+            <select type="text" name="turno" id="Turno" onchange="atualizaParams()">
+              <option value="empty"></option>
+              <option value=" A 06h00 - 18h00">Turno A 06h00 - 18h00</option>
+              <option value=" B 06h00 - 18h00">Turno B 06h00 - 18h00</option>
+              <option value=" C 18h00 - 06h00">Turno C 18h00 - 06h00</option>
+              <option value=" D 18h00 - 06h00">Turno D 18h00 - 06h00</option>
+            </select>
+          </div>
+          <div>
+            <label for="data">Data</label>
+            <input type="date" name="data" id="Data"  onchange="atualizaParams()"/>
+          </div>
+        </div>
+        <div class="Right"><img src="./imgteste.jpg" alt="" /></div>
+      </div>
+      <hr width="90%" />
+
+      <section class="secondarySection">
+        <div class="div1">
+          <div style="align-items: flex-start">
+            <label for="Processo">Processo</label>
+            <input
+              type="text"
+              name="Processo"
+              id="Processo"
+              value=""
+              placeholder="Ex: ITM-D"
+              onchange="atualizaParams2()"
+            />
+          </div>
+          <div>
+            <label for="Incidente">Incidente</label>
+            <input
+              type="text"
+              name="Incidente"
+              id="Incidente"
+              value="INC"
+              placeholder="Ex: INCXXXXXX"
+              onchange=""
+            />
+          </div>
+          <div style="align-items: flex-end">
+            <label for="Eqp">Equipamento</label>
+            <input
+              type="text"
+              name="Equipamento"
+              id="Equipamento"
+              placeholder="Ex: 610-EM-04"
+              onchange=""
+            />
+          </div>
+        </div>
+        <div class="div2">
+          <div
+            style="align-items: flex-start"
+            style="display: flex; justify-content: flex-end"
+          >
+            <label for="acionamento">Acionamento</label>
+            <input type="datetime-local"
+            onchange="" name="acionamento" id="Acionamento" />
+          </div>
+          <div style="align-items: flex-end">
+            <label for="Encerramento">Encerramento</label>
+            <input type="datetime-local"
+            onchange="" name="Encerramento" id="Encerramento" />
+          </div>
+        </div>
+      </section>
+      <hr width="90%" />
+
+      <section class="lastSection">
+        <div>
+          <label for="probl">Problema</label>
+          <textarea
+            name="probl"
+            id="probl"
+            cols="2"
+            rows="10"
+            placeholder="Descreva o problema encontrado..."
+          ></textarea>
+        </div>
+        <div>
+          <label for="solu">Solução</label>
+          <textarea
+            name="solu"
+            id="solu"
+            cols="2"
+            rows="10"
+            placeholder="Descreva detalhadamente os passos seguidos para resolver..."
+          ></textarea>
+          
+        </div>
+      </section>
+      <div class="submit">
+        <input onclick="atualizaSolucoes()" type="submit" value="Adicionar">
+
+      </div>
+    </main>
+    <div class="preview">
+      <h1 class="title">Relatório de turno</h1>
+      <p id="formatedText" class="dadosDoUsuario"></p>
+      <textarea id="solucao"></textarea>
+      <div class="buttons">
+        <button class="copiarTexto" onclick="apagar()">Apagar Relatório</button>
+        <button class="apagarTexto" onclick="copiar()">Copiar texto</button>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
