@@ -1,6 +1,12 @@
 header {
-    z-index: 9999;
+  font-size: 16pt;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  color: white;
+
+  z-index: 9999;
   position: absolute;
+  top: 2vh;
   left: 3px;
   width: 5vw;
   height: 85vh;
@@ -18,47 +24,53 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    
-    >a{
-        >img{
-            width: 50px;
-            transition: 0.4s;
-            border-bottom: 3px solid transparent;
-            &:hover{
-                scale: 1.1;
-                border-bottom: 3px solid darkcyan;
-                .tooltip{
-                    visibility: visible;
-                }
-            }
+    justify-content: flex-start;
+
+    > a {
+      > img {
+        width: 50px;
+        transition: 0.4s;
+        border-bottom: 3px solid transparent;
+        &:hover {
+          scale: 1.1;
+          border: 2px solid lightgray;
+          border-radius: 10px;
+          .tooltip {
+            visibility: visible;
+          }
         }
+      }
     }
 
     > p {
       > img {
         width: 50px;
         border: 2px solid lightgray;
-        border-left: transparent;
-        border-radius: 4px;
-        padding: 4px;
+        border-radius: 10px;
+        -webkit-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.75);
+        
       }
     }
-  }}
-
-  .tooltip{
-    position: absolute;
-    left: 5vw;
-    padding: 5px 10px 5px 10px;
-    color: white;  background: rgba(90, 50, 50, 0.85);
-    border-radius: 5px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 1);
-    backdrop-filter: blur(7.4px);
-    transition: 0.3s;
-    opacity: 0;
-    visibility: hidden;
   }
+}
 
-div a:hover + .tooltip{
-    visibility: visible;
-    opacity: 1;
+.tooltip {
+  position: absolute;
+  left: 5vw;
+  padding: 5px 10px 5px 10px;
+  color: white;
+  background: rgba(90, 50, 50, 0.85);
+  border-radius: 5px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 1);
+  backdrop-filter: blur(7.4px);
+  transition: 0.3s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+div a:hover + .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
