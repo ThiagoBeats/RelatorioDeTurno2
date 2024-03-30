@@ -33,7 +33,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url(./background.jpg);
+  background-image: url(./Imagens/background.jpg);
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
@@ -45,26 +45,31 @@ body {
 }
 
 main {
+  position: absolute;
+  top: 2vh;
+  left: calc(5vw + 6px);
   background: rgba(70, 30, 30, 0.45);
   border-radius: 5px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(7.4px);
   -webkit-backdrop-filter: blur(7.4px);
-  height: 100%;
-  width: 60vw;
+  height: 95vh;
+  width: calc(100vw - 25px - 35vw);
   gap: 10px;
   overflow-x: hidden;
 }
 
 .preview {
+  position: absolute;
+  
+  right: 3px;
   background: rgba(100, 43, 43, 0.45);
   border-radius: 5px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(7.4px);
   -webkit-backdrop-filter: blur(7.4px);
-  height: 100%;
+  height: 95vh;
   width: 30vw;
-  margin: 5px;
 }
 
 .mainDiv {
@@ -232,4 +237,13 @@ select {
     margin-bottom: 10%;
     background-color: transparent;
   }
+}
+
+.apont{
+  width: 99%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 5%;
 }

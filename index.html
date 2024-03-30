@@ -5,9 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Relatório de turno</title>
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./header.css" />
   </head>
 
   <body>
+    <header>
+      <div>
+        <p id="imgRelatorio">
+          <img src="./Imagens/icons8-relatório-100.png" alt="" />
+        </p>
+        <p class="tooltip">Relatório</p>
+      </div>
+      <div>
+        <a id="imgEquipamentos" href="">
+          <img src="./Imagens/icons8-equipment-64.png" alt="" />
+        </a>
+        <p class="tooltip">Equipamentos</p>
+      </div>
+    </header>
+    
+
     <main>
       <div class="mainDiv">
         <div class="Left">
@@ -22,7 +39,9 @@
             />
           </div>
           <div>
-            <label for="matricula" onchange="atualizaParams()">Matricula </label>
+            <label for="matricula" onchange="atualizaParams()"
+              >Matricula
+            </label>
             <input
               type="text"
               name="matricula"
@@ -33,7 +52,12 @@
           </div>
           <div>
             <label for="turno">Turno</label>
-            <select type="text" name="turno" id="Turno" onchange="atualizaParams()">
+            <select
+              type="text"
+              name="turno"
+              id="Turno"
+              onchange="atualizaParams()"
+            >
               <option value="empty"></option>
               <option value=" A 06h00 - 18h00">Turno A 06h00 - 18h00</option>
               <option value=" B 06h00 - 18h00">Turno B 06h00 - 18h00</option>
@@ -43,10 +67,15 @@
           </div>
           <div>
             <label for="data">Data</label>
-            <input type="date" name="data" id="Data"  onchange="atualizaParams()"/>
+            <input
+              type="date"
+              name="data"
+              id="Data"
+              onchange="atualizaParams()"
+            />
           </div>
         </div>
-        <div class="Right"><img src="./imgteste.jpg" alt="" /></div>
+        <div class="Right"><img src="./Imagens/imgteste.jpg" alt="" /></div>
       </div>
       <hr width="90%" />
 
@@ -91,13 +120,21 @@
             style="display: flex; justify-content: flex-end"
           >
             <label for="acionamento">Acionamento</label>
-            <input type="datetime-local"
-            onchange="" name="acionamento" id="Acionamento" />
+            <input
+              type="datetime-local"
+              onchange=""
+              name="acionamento"
+              id="Acionamento"
+            />
           </div>
           <div style="align-items: flex-end">
             <label for="Encerramento">Encerramento</label>
-            <input type="datetime-local"
-            onchange="" name="Encerramento" id="Encerramento" />
+            <input
+              type="datetime-local"
+              onchange=""
+              name="Encerramento"
+              id="Encerramento"
+            />
           </div>
         </div>
       </section>
@@ -123,12 +160,14 @@
             rows="10"
             placeholder="Descreva detalhadamente os passos seguidos para resolver..."
           ></textarea>
-          
         </div>
       </section>
+      <div class="apont">
+        <label for="apontamento">Tempo de parada</label>
+        <input type="text" placeholder="Ex: 10 minutos" id="apontamento" />
+      </div>
       <div class="submit">
-        <input onclick="atualizaSolucoes()" type="submit" value="Adicionar">
-
+        <input onclick="atualizaSolucoes()" type="submit" value="Adicionar" />
       </div>
     </main>
     <div class="preview">

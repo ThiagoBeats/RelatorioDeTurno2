@@ -1,3 +1,9 @@
+document.addEventListener("DOMContentLoaded", function() {
+  // Esta função será executada quando o DOM estiver completamente carregado
+  var elemento = document.getElementById("imgRelatorio");
+  elemento.disabled = true;
+});
+
 var turno = document.getElementById("Turno").value;
 var nome = document.getElementById("Nome").value;
 var data = document.getElementById("Data").value;
@@ -11,6 +17,8 @@ var Encerramento = document.getElementById("Encerramento").value;
 
 var Problema = document.getElementById("probl").value;
 var Solucao = document.getElementById("solu").value;
+
+var Apontamento;
 
 var problemas = [
   "",
@@ -79,26 +87,27 @@ function atualizaSolucoes() {
           Encerramento = "Em aberto";
         }
         document.getElementById("solucao").value +=
-          "Processo: " +
+          "*Processo:* " +
           Processo +
           "\n" +
-          "Incidente: " +
+          "*Incidente:* " +
           Incidente +
           "\n" +
-          "Equipamento: " +
+          "*Equipamento:* " +
           Equipamento +
           "\n\n" +
-          "Acionamento: " +
+          "*Acionamento:* " +
           Acionamento +
           "\n\n" +
-          "Problema: " +
+          "*Problema:* " +
           problemas[index] +
           "\n\n" +
-          "Solução: " +
+          "*Solução:* " +
           solucoes[index] +
-          "\n\nEncerramento: " +
+          "\n\n" + Apontamento +
+          "\n\n*Encerramento:* " +
           Encerramento +
-          "\n________________________________\n\n";
+          "\n\n";
         document.getElementById("Incidente").value = "";
         document.getElementById("probl").value = "";
         document.getElementById("solu").value = "";
@@ -114,15 +123,21 @@ function atualizaParams() {
   data = document.getElementById("Data").value;
   matricula = document.getElementById("Matricula").value;
 
+  var ano = data.substring(0, 4);
+  var mes = data.substring(5, 7);
+  var dia = data.substring(8, 10);
+
+  data = dia + "/" + mes + "/" + ano;
+
   DadosDoUsuario =
-    "<strong>Turno: " +
+    "<strong>*Turno:* " +
     turno +
     "</strong> - " +
     nome +
     "<br>" +
-    "Matricula: " +
+    "*Matricula:* " +
     matricula +
-    "<br> Data: " +
+    "<br> *Data:* " +
     data +
     "<br><br>";
 
@@ -135,6 +150,12 @@ function atualizaParams2() {
   Equipamento = document.getElementById("Equipamento").value;
   Acionamento = document.getElementById("Acionamento").value;
   Encerramento = document.getElementById("Encerramento").value;
+  Apontamento = document.getElementById("apontamento").value
+  if (Apontamento == '' || Apontamento == 0) {
+    Apontamento = "*Não houve apontamento de parada*"
+  }else{
+    Apontamento = "Houve apontamento de, aproximadamente " + Apontamento
+  }
 
   var Aano = Acionamento.substring(0, 4);
   var Ames = Acionamento.substring(5, 7);
@@ -167,7 +188,7 @@ function copiar() {
 
 function apagar() {
     if (window.confirm("Deseja mesmo apagar o relatório criado? ")) {
-        document.getElementById("solucao").innerHTML = ''
+        document.getElementById("solucao").value = ''
     }
 }
 
