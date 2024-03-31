@@ -107,7 +107,7 @@ function atualizaSolucoes() {
           "\n\n" + Apontamento +
           "\n\n*Encerramento:* " +
           Encerramento +
-          "\n\n";
+          "\n_\n";
         document.getElementById("Incidente").value = "";
         document.getElementById("probl").value = "";
         document.getElementById("solu").value = "";
