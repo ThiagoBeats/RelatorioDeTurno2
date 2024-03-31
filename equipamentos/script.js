@@ -26,36 +26,82 @@ function handleFile() {
 
   xhr.send();
 }
+
+function excluirParagrafos() {
+  var paragrafos = document.getElementsByClassName("paragr");
+
+  // Verificar se há parágrafos antes de tentar removê-los
+  if (paragrafos.length > 0) {
+    for (var i = paragrafos.length - 1; i >= 0; i--) {
+      var paragrafo = paragrafos[i];
+      paragrafo.remove();
+    }
+  }
+}
+
 function busca() {
-    var contagem = 0;
+  excluirParagrafos();
+  var contagem = 0;
   var tagToFind = document.getElementById("tagInput").value;
   var textOutput = "";
+  var color = "lightgray";
   for (let index = 0; index < dados.length; index++) {
     if (typeof dados[index][1] != "undefined") {
-      if (dados[index][1].toUpperCase().includes(tagToFind.toUpperCase())) {
-        contagem += 1
-        textOutput +=
-          "U.O: " +
+      if (
+        dados[index][1]
+          .toUpperCase()
+          .includes(tagToFind.toUpperCase().trim())
+      ) {
+        contagem += 1;
+        textOutput =
           dados[index][0] +
-          " | Tag: " +
+          "  -  Tag: " +
           dados[index][1] +
-          " | PLC: " +
+          "  -  PLC: " +
           dados[index][2] +
-          " | Localidade: " +
+          "  -  Localidade: " +
           dados[index][3] +
-          " | Comentários: " +
-          dados[index][4] + "\n\n"
+          "  -    Comentários: " +
+          dados[index][4] +
+          "\n\n";
+        var paragr = document.createElement("p");
+        paragr.textContent = textOutput;
+        paragr.style.backgroundColor = color;
+        if (color == "lightgray") {
+          color = "darkgray";
+        } else {
+          color = "lightgray";
+        }
+        paragr.id = "paragr";
+        paragr.className = "paragr";
+        document.getElementById("informations").appendChild(paragr);
       }
     }
   }
-  document.getElementById("results").innerHTML = contagem + " Resultados encontrados"
-  document.getElementById("return").value = textOutput;
+  document.getElementById("results").innerHTML =
+    contagem + " Resultados encontrados";
+  //document.getElementById("return").value = textOutput;
 }
 
-function carregarPagina() {
-    if(window.prompt("Digite a senha de acesso") == 'valepico'){
-      window.location.href = '../acessos/acessos.html';
-     
-    }
-  }
-  
+function solicitarSenha() {
+  Swal.fire({
+    title: "Digite sua senha:",
+    input: "password",
+    inputAttributes: {
+      autocapitalize: "off",
+    },
+    showCancelButton: true,
+    confirmButtonText: "Enviar",
+    showLoaderOnConfirm: true,
+    preConfirm: (senha) => {
+      // Faça a verificação da senha aqui
+      if (senha === "valepico") {
+        Swal.fire("Senha correta. Acesso permitido!");
+        window.location.href = "../acessos/acessos.html";
+      } else {
+        Swal.fire("Senha incorreta. Acesso negado!");
+      }
+    },
+    allowOutsideClick: () => !Swal.isLoading(),
+  });
+}

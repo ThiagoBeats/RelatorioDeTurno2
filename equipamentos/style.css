@@ -173,10 +173,11 @@ hr{
 }
 
 .Informations{
-  display: flex;
-  flex-direction: row;
-  gap: 0;
+  padding-left: 3%;
+  padding-right: 3%;
+  gap: 0px;
   height: 100%;
+  
 }
 
 textarea{
@@ -189,6 +190,13 @@ textarea{
   color: white;
   padding: 2%;
 
+}
+#paragr{
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid darkcyan;
+  padding: 1%;
+  color: black;
 }
 
 /*-------------------Responsividade----------------------*/

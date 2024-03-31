@@ -31,9 +31,10 @@ header {
       > img {
        
         width: 50px;
-        transition: 0.4s;
+        transition: 0.1s;
         border-bottom: 3px solid transparent;
         &:hover {
+          cursor: pointer;
           scale: 1.1;
           border: 2px solid lightgray;
           border-radius: 10px;

@@ -4,54 +4,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Capturar senha oculta com Bootstrap Modal</title>
+  <!-- Incluir os arquivos CSS do Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
- 
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#senhaModal">
+    Solicitar senha
+  </button>
 
-  <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+  <!-- O modal -->
+  <div class="modal fade" id="senhaModal" tabindex="-1" role="dialog" aria-labelledby="senhaModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="senhaModalLabel">Digite sua senha:</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="password" class="form-control" id="senhaInput">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" onclick="verificarSenha()">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Incluir os arquivos JavaScript do Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
   <script>
-    document.addEventListener('DOMContentLoaded', handleFile, false);
-    var dados = ''
-    function handleFile() {
-      var input = document.getElementById('input');
-      var filePath = "./recursos/DadosPico.xlsx";
+    function verificarSenha() {
+      var senha = document.getElementById('senhaInput').value;
 
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', filePath, true);
-      xhr.responseType = 'arraybuffer';
-
-      xhr.onload = function(e) {
-        var data = new Uint8Array(xhr.response);
-        var workbook = XLSX.read(data, { type: 'array' });
-
-        workbook.SheetNames.forEach(function (sheetName) {
-          var worksheet = workbook.Sheets[sheetName];
-          var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-
-          //console.log('Sheet Name:', sheetName);
-          //console.log('Sheet Data:', jsonData);
-          dados = jsonData
-          busca("lit");
-
-          // Faça o que desejar com os dados da planilha
-        });
-      };
-
-      xhr.send();
-    }
-    function busca(tag) {
-      console.log("Iniciou");
-
-      for (let index = 0; index < dados.length; index++) {
-        //console.log(index + "|" + dados[index][1])
-        if (typeof(dados[index][1]) != 'undefined') {
-          if (dados[index][1].toUpperCase().includes(tag.toUpperCase())) {
-            console.log('U.O: ' + dados[index][0] + " | Tag: " + dados[index][1] + " | PLC: " + dados[index][2] + " | Localidade: " + dados[index][3] + " | Comentários: " + dados[index][4]);
-          }
-        }
+      // Faça a verificação da senha aqui
+      if (senha === 'senha_correta') {
+        alert('Senha correta. Acesso permitido!');
+      } else {
+        alert('Senha incorreta. Acesso negado!');
       }
+
+      // Fechar o modal
+      $('#senhaModal').modal('hide');
     }
   </script>
 </body>

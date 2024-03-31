@@ -192,8 +192,29 @@ function apagar() {
     }
 }
 
-function carregarPagina() {
-  if(window.prompt("Digite a senha de acesso") == 'valepico'){
-    window.location.href = './acessos/acessos.html';}
-}
+
+  function solicitarSenha() {
+    Swal.fire({
+      title: 'Digite sua senha:',
+      input: 'password',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Enviar',
+      showLoaderOnConfirm: true,
+      preConfirm: (senha) => {
+        // Faça a verificação da senha aqui
+        if (senha === 'valepico') {
+          Swal.fire('Senha correta. Acesso permitido!');
+          window.location.href = './acessos/acessos.html';
+
+        } else {
+          Swal.fire('Senha incorreta. Acesso negado!');
+        }
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    });
+  }
+
 
