@@ -54,7 +54,7 @@ main {
   backdrop-filter: blur(7.4px);
   -webkit-backdrop-filter: blur(7.4px);
   height: 95vh;
-  width: calc(100vw - 12px - 35vw);
+  width: calc(100vw - 12px - 15vw);
   gap: 10px;
   overflow-x: hidden;
 }
@@ -69,13 +69,14 @@ main {
   backdrop-filter: blur(7.4px);
   -webkit-backdrop-filter: blur(7.4px);
   height: 95vh;
-  width: 30vw;
+  width: 10vw;
 }
 
 .mainDiv {
   padding: 33px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 2vh;
 }
@@ -155,4 +156,53 @@ select {
   }
 }
 
+hr{
+  width: 90%;
+}
+
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  >input{
+    width: 20vw;
+  }
+}
+
+.Informations{
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  height: 100%;
+}
+
+textarea{
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  font-size: 16pt;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  color: white;
+  padding: 2%;
+
+}
+
+/*-------------------Responsividade----------------------*/
+
+@media screen and (max-width: 950px) {
+  main {
+    top: 66px;
+    left: 3px;
+    height: calc(99vh - 66px);
+    width: calc(100vw - 6px);
+  }
+  .preview{
+    visibility: hidden;
+  }
+
+}
 

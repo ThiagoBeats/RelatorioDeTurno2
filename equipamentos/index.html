@@ -23,9 +23,22 @@
       </div>
     </header>
     <main>
-      <div class="mainDiv"></div>
+      <div class="mainDiv">
+        <div class="header">
+          <p>Tag do equipamento: </p>
+          <input id="tagInput" onchange="busca()" type="text" placeholder="Ex: 610-EM-04">
+          
+          
+        </div>
+        <p class="buttons" id="results">0 resultados encontrados </p>
+      </div>
+      <hr>
+      <div class="Informations">
+        <textarea id="return"></textarea>
+      </div>
     </main>
     <div class="preview"></div>
+     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
