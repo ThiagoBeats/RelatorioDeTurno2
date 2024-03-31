@@ -73,6 +73,7 @@ main {
 }
 
 .mainDiv {
+  flex-wrap: wrap-reverse;
   padding: 33px;
   display: flex;
   flex-direction: row;
@@ -90,6 +91,7 @@ main {
   gap: 50px;
   > .div1,
   .div2 {
+    flex-wrap: wrap;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -183,6 +185,11 @@ select {
 }
 
 .preview {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  overflow: scroll;
+  overflow-x: hidden;
   > h1 {
     text-align: center;
     text-decoration: underline;
@@ -191,8 +198,19 @@ select {
   > p {
     font-size: 1rem;
   }
-  overflow: scroll;
-  overflow-x: hidden;
+  >textarea{
+    font-size: 1rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    border: none;
+    color: white;
+    padding-left: 10px;
+    resize: none;
+    width: 95%;
+    height: 50%;
+    margin-bottom: 10%;
+    background-color: transparent;
+  }
 }
 
 .buttons {
@@ -217,26 +235,6 @@ select {
   }
 }
 
-.preview{
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-
-  >textarea{
-    font-size: 1rem;
-    font-family: "Roboto", sans-serif;
-    font-weight: 600;
-    border: none;
-    color: white;
-    padding-left: 10px;
-    resize: none;
-    width: 95%;
-    height: 50%;
-    margin-bottom: 10%;
-    background-color: transparent;
-  }
-}
-
 .apont{
   width: 99%;
   display: flex;
@@ -244,4 +242,92 @@ select {
   justify-content: center;
   flex-direction: column;
   margin-bottom: 5%;
+}
+.flexStart{
+  align-items: flex-start;
+}
+.flexEnd{
+  align-items: flex-end;
+}
+
+/*------------------RESPONSIVIDADE------------------*/
+
+@media screen and (max-width: 950px) {
+  main {
+    top: 66px;
+    left: 3px;
+    height: calc(99vh - 66px);
+    width: calc(60vw);
+  }
+  .preview{
+    top: 66px;
+    left: calc(6px + 60vw);
+    height: calc(99vh - 66px);
+    width: calc(100vw - 9px - 60vw);
+  }
+}
+
+@media screen and (max-width: 780px) {
+  main {
+    top: 66px;
+    left: 3px;
+    height: calc(99vh - 66px);
+    width: calc(100vw - 3px);
+  }
+  .preview{
+    top: calc(99vh + 3px);
+    left: 3px;
+    height: calc(70vh);
+    width: calc(100vw - 3px);
+  }
+}
+
+
+@media screen and (max-width: 450px) {
+  .Left{
+    justify-content: center;
+    >div{
+      align-items: center;
+      justify-content: center;
+      >label{
+        text-align: center;
+      }
+      >input, select{
+        width: 50vw;
+      }
+    }
+    
+  }
+
+  .lastSection{
+    >div{
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .mainDiv{
+    align-items: center;
+    justify-content: center;
+  }
+
+  .div1{
+    flex-direction: column;
+    >div{>input{
+      width: 50vw;}}
+  }
+}
+
+
+@media screen and (max-width: 420px) {
+  .div2{
+    flex-direction: column;
+    >div{
+      justify-content: center;
+      align-items: center;
+      >input{
+        width: 50vw;
+      }
+    }
+  }
 }
