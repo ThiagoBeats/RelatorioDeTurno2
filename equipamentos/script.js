@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", handleFile, false);
 var dados = "";
 function handleFile() {
   var input = document.getElementById("input");
-  var filePath = "../recursos/DadosPico.xlsx";
+  var filePath = "../DadosPico.xlsx";
 
   var xhr = new XMLHttpRequest();
   xhr.open("GET", filePath, true);
