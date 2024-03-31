@@ -51,3 +51,11 @@ function busca() {
   document.getElementById("results").innerHTML = contagem + " Resultados encontrados"
   document.getElementById("return").value = textOutput;
 }
+
+function carregarPagina() {
+    if(window.prompt("Digite a senha de acesso") == 'valepico'){
+      window.location.href = '../acessos/acessos.html';
+     
+    }
+  }
+  

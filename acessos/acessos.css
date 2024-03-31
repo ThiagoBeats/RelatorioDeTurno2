@@ -1,0 +1,95 @@
+@media screen and (max-width: 950px) {
+    main {
+      top: 66px;
+      left: 3px;
+      height: calc(99vh - 66px);
+      width: calc(100vw - 6px);
+    }
+    .preview{
+      visibility: hidden;
+    }
+  
+  }
+
+  body {
+    width: 99%;
+    height: 97vh;
+    min-height: 10vh;
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../Imagens/background.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+    font-size: 16pt;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    color: white;
+  }
+
+  main {
+    position: absolute;
+    top: 2vh;
+    left: calc(5vw + 6px);
+    background: rgba(70, 30, 30, 0.45);
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.4px);
+    -webkit-backdrop-filter: blur(7.4px);
+    height: 95vh;
+    width: calc(100vw - 12px - 15vw);
+    gap: 10px;
+    overflow-x: hidden;
+  }
+
+  .preview {
+    position: absolute;
+    top: 2vh;
+    right: 3px;
+    background: rgba(100, 43, 43, 0.45);
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.4px);
+    -webkit-backdrop-filter: blur(7.4px);
+    height: 95vh;
+    width: 10vw;
+  }
+  
+
+main{
+    >div{
+        height: 50%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow: scroll;
+        >.head{height: 26px;
+            padding-left: 3%;
+            padding-right: 3%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+            >p{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 20%;
+                border: 2px solid gainsboro;
+            }
+        }
+    }
+}
+
+h1{
+    padding-left: 3%;
+}
+
+.head:nth-child(1){
+    background-color: blue;
+}

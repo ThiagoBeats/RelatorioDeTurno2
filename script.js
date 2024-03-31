@@ -192,4 +192,8 @@ function apagar() {
     }
 }
 
+function carregarPagina() {
+  if(window.prompt("Digite a senha de acesso") == 'valepico'){
+    window.location.href = './acessos/acessos.html';}
+}
 
