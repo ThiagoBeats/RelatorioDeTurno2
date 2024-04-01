@@ -26,8 +26,9 @@
 }
 
 @media screen and (max-width: 950px) {
-    main {
-      top: 66px;
+    main{
+      position: absolute;
+      top: 5vh;
       left: 3px;
       height: calc(99vh - 66px);
       width: calc(100vw - 6px);
@@ -132,7 +133,7 @@ h1{
     background-color: lightgray;
 }
 .head:nth-child(even){
-  background-color: darkgray;
+  background-color: white;
 }
 
 .tfa, .pico{
@@ -154,3 +155,26 @@ h1{
 .head p:nth-child(5){
   width: 25%;
 }
+
+
+#eye{
+  
+  position: absolute;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  border: 1px solid transparent;
+  border-radius: 5px;
+  top: 0vh;
+  left: 0;
+  padding: 7px;
+  transition: 0.1s;
+  &:hover{
+    scale: 1.1;
+  }
+}
+
+
+

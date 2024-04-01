@@ -29,7 +29,6 @@ function handleFile() {
 
 function excluirParagrafos() {
   var paragrafos = document.getElementsByClassName("paragr");
-
   // Verificar se há parágrafos antes de tentar removê-los
   if (paragrafos.length > 0) {
     for (var i = paragrafos.length - 1; i >= 0; i--) {
@@ -68,7 +67,7 @@ function busca() {
         paragr.textContent = textOutput;
         paragr.style.backgroundColor = color;
         if (color == "lightgray") {
-          color = "darkgray";
+          color = "white";
         } else {
           color = "lightgray";
         }
@@ -83,25 +82,4 @@ function busca() {
   //document.getElementById("return").value = textOutput;
 }
 
-function solicitarSenha() {
-  Swal.fire({
-    title: "Digite sua senha:",
-    input: "password",
-    inputAttributes: {
-      autocapitalize: "off",
-    },
-    showCancelButton: true,
-    confirmButtonText: "Enviar",
-    showLoaderOnConfirm: true,
-    preConfirm: (senha) => {
-      // Faça a verificação da senha aqui
-      if (senha === "valepico") {
-        Swal.fire("Senha correta. Acesso permitido!");
-        window.location.href = "../acessos/acessos.html";
-      } else {
-        Swal.fire("Senha incorreta. Acesso negado!");
-      }
-    },
-    allowOutsideClick: () => !Swal.isLoading(),
-  });
-}
+

@@ -1,51 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="../header.css" />
-    <title>Equipamentos</title>
-  </head>
-  <body>
-    <header>
-      <div>
-        <a id="imgRelatorio" href="../index.html">
-          <img src="../Imagens/icons8-relatório-100.png" alt="" />
-        </a>
-        <p class="tooltip">Relatório</p>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="../header.css" />
+  <link rel="shortcut icon" href="../Imagens/icons8-escritório-94.png" type="image/x-icon">
+  <title>Equipamentos</title>
+</head>
+
+<body>
+  <header>
+    <div>
+      <a id="imgRelatorio" href="../index.html">
+        <img src="../Imagens/icons8-relatório-100.png" alt="" />
+      </a>
+      <p class="tooltip">Relatório</p>
+    </div>
+    <div>
+      <p id="imgEquipamentos" href="">
+        <img src="../Imagens/icons8-equipment-64.png" alt="" />
+      </p>
+      <p class="tooltip">Equipamentos</p>
+    </div>
+    <div>
+      <a id="imgAcessos" href="../acessos/acessos.html">
+        <img src="../Imagens/icons8-lock-48.png" alt="" />
+      </a>
+      <p class="tooltip">Acessos</p>
+    </div>
+  </header>
+  <main>
+    <div class="mainDiv">
+      <div class="header">
+        <p>Tag do equipamento: </p>
+        <input id="tagInput" onchange="busca()" type="text" placeholder="Ex: 610-EM-04">
+
+
       </div>
-      <div>
-        <p id="imgEquipamentos" href="">
-          <img src="../Imagens/icons8-equipment-64.png" alt="" />
-        </p>
-        <p class="tooltip">Equipamentos</p>
-      </div>
-      <div>
-        <a id="imgAcessos" onclick="solicitarSenha()">
-          <img src="../Imagens/icons8-lock-48.png" alt="" />
-        </a>
-        <p class="tooltip">Acessos</p>
-      </div>
-    </header>
-    <main>
-      <div class="mainDiv">
-        <div class="header">
-          <p>Tag do equipamento: </p>
-          <input id="tagInput" onchange="busca()" type="text" placeholder="Ex: 610-EM-04">
-          
-          
-        </div>
-        <p class="buttons" id="results">0 resultados encontrados </p>
-      </div>
-      <hr>
-      <div class="Informations" id="informations">
-      </div>
-    </main>
-    <div class="preview"></div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
-  
-     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
-    <script src="./script.js"></script>
-  </body>
+      <p class="buttons" id="results">0 resultados encontrados </p>
+    </div>
+    <hr>
+    <div class="Informations" id="informations">
+    </div>
+  </main>
+  <div class="preview"></div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
+
+  <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+  <script src="./script.js"></script>
+</body>
+
 </html>

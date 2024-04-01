@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,7 @@
     <title>Acessos</title>
     <link rel="stylesheet" href="../header.css" />
     <link rel="stylesheet" href="./acessos.css">
+    <link rel="shortcut icon" href="../Imagens/icons8-escritório-94.png" type="image/x-icon">
 </head>
 
 <body>
@@ -25,13 +26,14 @@
         </div>
         <div>
             <p id="imgAcessos" href="">
-                <img src="../Imagens/icons8-lock-48.png" alt="" />
+                <img src="../Imagens/icons8-lock-48.png" alt=""  />
             </p>
             <p class="tooltip">Acessos</p>
         </div>
     </header>
 
     <main>
+        <button href="" onclick="olhoClicado()"><img id="eye" src="../Imagens/icons8-visível-48.png"></button>
         <h1>Terminal Ferroviário Andaime</h1>
         <div class="tfa">
             <div class="head">
@@ -40,69 +42,6 @@
                 <p>HostName</p>
                 <p>Login</p>
                 <p>Senha</p>
-            </div>
-            <div class="head">
-                <p>Máquina</p>
-                <p>10.28.4.39</p>
-                <p>HostName</p>
-                <p>Usuário TOP.TA</p>
-                <p>Senha TOP.TA</p>
-            </div>
-            <div class="head">
-                <p>Máquina</p>
-                <p>10.28.4.40</p>
-                <p>HostName</p>
-                <p>Usuário TOP.TA</p>
-                <p>Senha TOP.TA</p>
-            </div>
-            <div class="head">
-                <p>Máquina</p>
-                <p>10.28.4.41</p>
-                <p>HostName</p>
-                <p>Usuário TOP.TA</p>
-                <p>Senha TOP.TA</p>
-            </div>
-            <div class="head">
-                <p>Máquina</p>
-                <p>10.28.4.42</p>
-                <p>HostName</p>
-                <p>Usuário TOP.TA</p>
-                <p>Senha TOP.TA</p>
-            </div>
-            <div class="head">
-                <p>Máquina</p>
-                <p>10.28.4.43</p>
-                <p>HostName</p>
-                <p>Usuário TOP.TA</p>
-                <p>Senha TOP.TA</p>
-            </div>
-            <div class="head">
-                <p>Máq. Manut</p>
-                <p>10.28.2.116</p>
-                <p>HostName</p>
-                <p>TATFAEE02\Administrator</p>
-                <p>V@le#tatf@01</p>
-            </div>
-            <div class="head">
-                <p>Máq. Manut</p>
-                <p>10.28.2.117</p>
-                <p>HostName</p>
-                <p>TATFAEE02\Administrator</p>
-                <p>tatf@01</p>
-            </div>
-            <div class="head">
-                <p>Superv. 1</p>
-                <p>10.28.4.8</p>
-                <p>HostName</p>
-                <p>TATFASS01\SCADA</p>
-                <p>tatf@SS01</p>
-            </div>
-            <div class="head">
-                <p>Superv. 2</p>
-                <p>10.28.4.7</p>
-                <p>HostName</p>
-                <p>TATFASS02\SCADA</p>
-                <p>tatf@SS01</p>
             </div>
         </div>
         <div class="pico">
@@ -117,7 +56,9 @@
         </div>
     </main>
     <div class="preview"></div>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="./acessos.js"></script>
 </body>
 
 </html>
