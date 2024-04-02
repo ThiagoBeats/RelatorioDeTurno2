@@ -39,11 +39,7 @@ function handleFile() {
       var worksheet = workbook.Sheets[sheetName];
       var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
-      //console.log('Sheet Name:', sheetName);
-      //console.log('Sheet Data:', jsonData);
       dadosDeAcesso = jsonData;
-
-      // Faça o que desejar com os dados da planilha
     });
   };
 
@@ -52,7 +48,7 @@ function handleFile() {
 
 var visibilidade = false;
 
-function olhoClicado(params) {
+function olhoClicado() {
     var olho = document.getElementById("eye")
     if (visibilidade) {
         excluirLinhas()

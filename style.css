@@ -219,6 +219,8 @@ select {
   align-items: center;
   justify-content: center;
   gap: 10%;
+  flex-wrap: wrap;
+  padding: 2%;
   > button {
     margin-bottom: 5%;
     display: flex;

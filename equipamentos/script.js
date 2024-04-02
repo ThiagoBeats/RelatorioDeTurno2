@@ -59,10 +59,13 @@ function busca() {
           "  -  PLC: " +
           dados[index][2] +
           "  -  Localidade: " +
-          dados[index][3] +
-          "  -    Comentários: " +
-          dados[index][4] +
-          "\n\n";
+          dados[index][3]
+          if(typeof(dados[index][4]) != 'undefined'){
+            textOutput +=
+            "  -    Comentários: " +
+            dados[index][4].toLowerCase() +
+            "\n\n";
+          }
         var paragr = document.createElement("p");
         paragr.textContent = textOutput;
         paragr.style.backgroundColor = color;

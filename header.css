@@ -59,9 +59,10 @@ header {
   }
 }
 
+
 .tooltip {
   position: absolute;
-  left: 5vw;
+  left: calc(5vw + 3px);
   padding: 5px 10px 5px 10px;
   color: white;
   background: rgba(90, 50, 50, 0.85);
@@ -92,4 +93,20 @@ div a:hover + .tooltip {
     flex-direction: row;
     gap: 3%;
   }
+
+  .tooltip {
+    position: absolute;
+    top: 60px;
+    left: auto;
+    padding: 5px 10px 5px 10px;
+    color: white;
+    background: rgba(90, 50, 50, 0.85);
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 1);
+    backdrop-filter: blur(7.4px);
+    transition: 0.3s;
+    opacity: 0;
+    visibility: hidden;
+  }
+
 }

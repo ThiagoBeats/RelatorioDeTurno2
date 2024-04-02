@@ -12,6 +12,12 @@
   <body>
     <header>
       <div>
+        <a id="imgPID"  id="imgRelatorio" href="./PID/PID.html">
+          <img src="./Imagens/grafico-de-linha.png" alt="" />
+        </a>
+        <p class="tooltip">Encontrar PID</p>
+      </div>
+      <div>
         <p id="imgRelatorio">
           <img src="./Imagens/icons8-relatório-100.png" alt="" />
         </p>
@@ -53,7 +59,6 @@
               type="text"
               name="matricula"
               id="Matricula"
-              autocomplete="matricula"
               onchange="atualizaParams()"
             />
           </div>
@@ -106,7 +111,6 @@
               type="text"
               name="Incidente"
               id="Incidente"
-              value="INC"
               placeholder="Ex: INCXXXXXX"
               onchange=""
             />
@@ -185,6 +189,7 @@
       <div class="buttons">
         <button class="copiarTexto" onclick="apagar()">Apagar Relatório</button>
         <button class="apagarTexto" onclick="copiar()">Copiar texto</button>
+        <button class="apagarTexto" onclick="encaminhar()"><img width="16" height="16" src="https://img.icons8.com/officel/16/whatsapp.png" alt="whatsapp"/>Encaminhar</button>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>

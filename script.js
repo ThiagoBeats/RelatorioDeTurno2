@@ -154,7 +154,7 @@ function atualizaParams2() {
   if (Apontamento == '' || Apontamento == 0) {
     Apontamento = "*Não houve apontamento de parada*"
   }else{
-    Apontamento = "Houve apontamento de, aproximadamente " + Apontamento
+    Apontamento = "*Houve apontamento de aproximadamente " + Apontamento + "*"
   }
 
   var Aano = Acionamento.substring(0, 4);
@@ -171,8 +171,9 @@ function atualizaParams2() {
   Encerramento = Edia + "/" + Emes + "/" + Eano + " às " + horaEncerramento;
 }
 
+var TextToCopy = ''
 function copiar() {
-  var TextToCopy =
+  TextToCopy =
     document.getElementById("formatedText").innerText +
     "\n" +
     document.getElementById("solucao").value;
@@ -192,5 +193,15 @@ function apagar() {
     }
 }
 
+function encaminhar() {
+  var textToCopy =
+    document.getElementById("formatedText").innerText +
+    "\n" +
+    document.getElementById("solucao").value;
 
+  // Substituir quebras de linha por %0A
+  var encodedText = encodeURIComponent(textToCopy).replace(/%0A/g, "%0A");
 
+  var fullMessage = "https://wa.me/?text=" + encodedText;
+  window.open(fullMessage, "_blank");
+}
