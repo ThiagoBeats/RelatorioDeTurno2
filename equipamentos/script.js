@@ -79,17 +79,18 @@ function busca() {
       ) {
         contagem += 1;
         textOutput =
-          dados[index][0] +
-          "  -  Tag: " +
+          dados[index][0] + " - " + 
           dados[index][1] +
-          "  -  PLC: " +
+          "  -  Tag: " +
           dados[index][2] +
+          "  -  PLC: " +
+          dados[index][3] +
           "  -  Localidade: " +
-          dados[index][3]
-          if(typeof(dados[index][4]) != 'undefined'){
+          dados[index][4]
+          if(typeof(dados[index][5]) != 'undefined'){
             textOutput +=
             "  -    Comentários: " +
-            dados[index][4].toLowerCase() +
+            dados[index][5].toLowerCase() +
             "\n\n";
           }
         var paragr = document.createElement("p");
