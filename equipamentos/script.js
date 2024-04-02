@@ -32,14 +32,13 @@ var dados = "";
 var filePath = "../DadosPico.xlsx";
 var urlPlanilha = "https://docs.google.com/spreadsheets/d/1I2bW6DAkHR5oHLo-YvuDrwIxU7BYdJ0FLpaNUllZ2FA/edit?usp=sharing"
 var xhr = new XMLHttpRequest();
-xhr.open("GET", urlPlanilha, true);
+xhr.open("GET", filePath, true);
 xhr.responseType = "arraybuffer";
 
 xhr.onload = function (e) {
   var arraybuffer = xhr.response;
   var data = new Uint8Array(arraybuffer);
   var workbook = XLSX.read(data, { type: "array" });
-  console.log(workbook.SheetNames)
   var nomeDaPagina = "Sheet2";
   workbook.SheetNames.forEach(function (nomeDaPagina) {
     var worksheet = workbook.Sheets[nomeDaPagina];
@@ -50,6 +49,47 @@ xhr.onload = function (e) {
   });
 };
 xhr.send();
+
+
+
+function recarregar(params) {
+  location.reload(true);
+}
+
+var counter = 0
+
+// function verificarDados() {
+//      console.log("Recarregando")
+//   if (dados < 10) {
+//     counter += 1
+//     console.log(counter)
+//     location.reload(true);
+//   } else {
+//     setTimeout(verificarDados, 20000); // Chama a função novamente após 1 segundo
+//   }
+// }
+// verificarDados();
+
+
+// function verificarDados(params) {
+//   if (dados.length < 10) {
+//     console.log("Não carregado")
+//     setTimeout(verificarDados, 5000);
+//   }
+// }
+
+// verificarDados()
+
+// while (dados < 10) {
+//   console.log("Recarregando")
+//     location.reload();
+// }
+
+if (dados.length < 5) {
+  document.getElementsByClassName("btnRefresh").innerHTML = 'Planilha não carregada. Recarregue a página'
+}else{
+  document.getElementsByClassName("btnRefresh").innerHTML = ''
+}
 
 
 
@@ -79,8 +119,8 @@ function busca() {
       ) {
         contagem += 1;
         textOutput =
-          dados[index][0] + " - " + 
-          dados[index][1] +
+        dados[index][0] + " - " + 
+        dados[index][1] +
           "  -  Tag: " +
           dados[index][2] +
           "  -  PLC: " +

@@ -20,7 +20,7 @@ function solicitarSenha() {
     allowOutsideClick: () => !Swal.isLoading(),
   });
 }
-/*
+
 document.addEventListener("DOMContentLoaded", handleFile, false);
 var dadosDeAcesso = "";
 function handleFile() {
@@ -45,29 +45,28 @@ function handleFile() {
 
   xhr.send();
 }
-*/
-var dadosDeAcesso = "";
-var filePath = "../Acessos.xlsx";
-var urlPlanilha = "https://docs.google.com/spreadsheets/d/1SAhRFohoxuAP-BS5waSTHa7R2YWQ4OdGjQxoVBi4nNQ/edit?usp=sharing"
-var xhr = new XMLHttpRequest();
-xhr.open("GET", urlPlanilha, true);
-xhr.responseType = "arraybuffer";
 
-xhr.onload = function (e) {
-  var arraybuffer = xhr.response;
-  var data = new Uint8Array(arraybuffer);
-  var workbook = XLSX.read(data, { type: "array" });
-  console.log(workbook.SheetNames)
-  var nomeDaPagina = "Sheet2";
-  workbook.SheetNames.forEach(function (nomeDaPagina) {
-    var worksheet = workbook.Sheets[nomeDaPagina];
-    var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-    dadosDeAcesso = jsonData;
+// var dadosDeAcesso = "";
+// var filePath = "../Acessos.xlsx";
+// var urlPlanilha = "https://docs.google.com/spreadsheets/d/1SAhRFohoxuAP-BS5waSTHa7R2YWQ4OdGjQxoVBi4nNQ/edit?usp=sharing"
+// var xhr = new XMLHttpRequest();
+// xhr.open("GET", filePath, true);
+// xhr.responseType = "arraybuffer";
 
-    // Faça o que desejar com os dados da planilha
-  });
-};
-xhr.send();
+// xhr.onload = function (e) {
+//   var arraybuffer = xhr.response;
+//   var data = new Uint8Array(arraybuffer);
+//   var workbook = XLSX.read(data, { type: "array" });
+//   console.log(workbook.SheetNames)
+//   workbook.SheetNames.forEach(function (nomeDaPagina) {
+//     var worksheet = workbook.Sheets[nomeDaPagina];
+//     var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+//     dadosDeAcesso = jsonData;
+
+//     // Faça o que desejar com os dados da planilha
+//   });
+// };
+// xhr.send();
 
 var visibilidade = false;
 
@@ -95,9 +94,9 @@ function excluirLinhas() {
 function insert() {
   excluirLinhas();
 
-  for (let index = 1; index < dadosDeAcesso.length; index++) {
+  for (let index = 0; index < dadosDeAcesso.length; index++) {
     if (
-      dadosDeAcesso[index][1].toUpperCase().trim() == "TFA".toUpperCase().trim()
+      dadosDeAcesso[index][0].toUpperCase().trim() == "TFA".toUpperCase().trim()
     ) {
       var div = document.createElement("div");
 
@@ -112,7 +111,7 @@ function insert() {
     }
 
     if (
-      dadosDeAcesso[index][1].toUpperCase().trim() ==
+      dadosDeAcesso[index][0].toUpperCase().trim() ==
       "Pico".toUpperCase().trim()
     ) {
       var div = document.createElement("div");

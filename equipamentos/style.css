@@ -192,6 +192,11 @@ textarea{
   padding: 2%;
 
 }
+.btnRefresh{
+background-color: blue;
+text-align: center;
+}
+
 #paragr{
   margin: 0;
   padding: 0;
