@@ -1,3 +1,4 @@
+/*
 document.addEventListener("DOMContentLoaded", handleFile, false);
 var dados = "";
 function handleFile() {
@@ -25,7 +26,32 @@ function handleFile() {
   };
 
   xhr.send();
-}
+}*/
+
+var dados = "";
+var filePath = "../DadosPico.xlsx";
+var urlPlanilha = "https://docs.google.com/spreadsheets/d/1I2bW6DAkHR5oHLo-YvuDrwIxU7BYdJ0FLpaNUllZ2FA/edit?usp=sharing"
+var xhr = new XMLHttpRequest();
+xhr.open("GET", urlPlanilha, true);
+xhr.responseType = "arraybuffer";
+
+xhr.onload = function (e) {
+  var arraybuffer = xhr.response;
+  var data = new Uint8Array(arraybuffer);
+  var workbook = XLSX.read(data, { type: "array" });
+  console.log(workbook.SheetNames)
+  var nomeDaPagina = "Sheet2";
+  workbook.SheetNames.forEach(function (nomeDaPagina) {
+    var worksheet = workbook.Sheets[nomeDaPagina];
+    var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+    dados = jsonData;
+
+    // Faça o que desejar com os dados da planilha
+  });
+};
+xhr.send();
+
+
 
 function excluirParagrafos() {
   var paragrafos = document.getElementsByClassName("paragr");
@@ -45,11 +71,11 @@ function busca() {
   var textOutput = "";
   var color = "lightgray";
   for (let index = 0; index < dados.length; index++) {
-    if (typeof dados[index][1] != "undefined") {
+    if (typeof dados[index][2] != "undefined") {
       if (
-        dados[index][1]
-          .toUpperCase()
-          .includes(tagToFind.toUpperCase().trim())
+        dados[index][2]
+          .toUpperCase().replace(/-/g, "")
+          .includes(tagToFind.toUpperCase().replace(/-/g, "").trim())
       ) {
         contagem += 1;
         textOutput =

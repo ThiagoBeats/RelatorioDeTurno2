@@ -1,50 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Upload e Salvar Foto</title>
+  <title>Leitura de Planilha Online</title>
+  <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
 </head>
 <body>
-  <h1>Upload e Salvar Foto</h1>
+  <h1>Leitura de Planilha Online</h1>
 
-  <form id="uploadForm">
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" required><br><br>
-
-    <label for="foto">Foto:</label>
-    <input type="file" id="foto" accept="image/*" required><br><br>
-
-    <button type="submit">Salvar</button>
-  </form>
+  <div id="dados-planilha"></div>
 
   <script>
-    document.getElementById('uploadForm').addEventListener('submit', function(event) {
-      event.preventDefault();
+    var urlPlanilha = 'https://docs.google.com/spreadsheets/d/1SAhRFohoxuAP-BS5waSTHa7R2YWQ4OdGjQxoVBi4nNQ/edit?usp=sharing';
+    var dados = "";
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', urlPlanilha, true);
+    xhr.responseType = 'arraybuffer';
 
-      var nome = document.getElementById('nome').value;
-      var foto = document.getElementById('foto').files[0];
+    xhr.onload = function(e) {
+      var arraybuffer = xhr.response;
+      var data = new Uint8Array(arraybuffer);
+      var workbook = XLSX.read(data, { type: 'array' });
+      workbook.SheetNames.forEach(function (sheetName) {
 
-      if (nome && foto) {
-        var reader = new FileReader();
-        reader.onload = function(event) {
-          var fotoData = event.target.result;
-          salvarFoto(nome, fotoData);
-        };
-        reader.readAsDataURL(foto);
-      } else {
-        alert('Por favor, insira um nome e selecione uma foto.');
-      }
+      var worksheet = workbook.Sheets[sheetName];
+      var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+      dados = jsonData;
+
+      // Faça o que desejar com os dados da planilha
     });
 
-    function salvarFoto(nome, fotoData) {
-      // Aqui você pode fazer o processamento necessário para salvar a foto com o nome dado.
-      // Por exemplo, você pode enviar os dados da foto para um servidor através de uma requisição Ajax ou armazená-los localmente.
+      // primeiraPlanilha = workbook.Sheets[workbook.SheetNames[0]];
+      // var dados = XLSX.utils.sheet_to_json(primeiraPlanilha, { header: 1 });
 
-      // Neste exemplo, vamos apenas exibir uma mensagem com o nome e a foto em uma nova janela.
-      var win = window.open('', '_blank');
-      win.document.write('<h2>Foto Salva:</h2>');
-      win.document.write('<p>Nome: ' + nome + '</p>');
-      win.document.write('<img src="' + fotoData + '">');
-    }
+      var divDados = document.getElementById('dados-planilha');
+      //divDados.innerHTML = '<pre>' + JSON.stringify(dados, null, 2) + '</pre>';
+    };
+
+    xhr.send();
   </script>
 </body>
 </html>
