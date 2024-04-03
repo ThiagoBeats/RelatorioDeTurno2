@@ -81,7 +81,6 @@ main {
   gap: 2vh;
 }
 
-
 input,
 select {
   display: flex;
@@ -97,9 +96,6 @@ select {
   width: auto;
   height: 30px;
 }
-
-
-
 
 .preview {
   > h1 {
@@ -137,12 +133,12 @@ select {
   }
 }
 
-.preview{
+.preview {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 
-  >textarea{
+  > textarea {
     font-size: 1rem;
     font-family: "Roboto", sans-serif;
     font-weight: 600;
@@ -157,31 +153,30 @@ select {
   }
 }
 
-hr{
+hr {
   width: 90%;
 }
 
-.header{
+.header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
-  >input{
+  > input {
     width: 20vw;
   }
 }
 
-.Informations{
+.Informations {
   padding-left: 3%;
   padding-right: 3%;
   gap: 0px;
   height: 100%;
-  
 }
 
-textarea{
+textarea {
   width: 100%;
   height: 100%;
   background-color: transparent;
@@ -190,14 +185,13 @@ textarea{
   font-weight: 600;
   color: white;
   padding: 2%;
-
 }
-.btnRefresh{
-background-color: blue;
-text-align: center;
+.btnRefresh {
+  background-color: blue;
+  text-align: center;
 }
 
-#paragr{
+#paragr {
   margin: 0;
   padding: 0;
   border-bottom: 1px solid darkcyan;
@@ -205,6 +199,11 @@ text-align: center;
   color: black;
 }
 
+#texto{
+  width: 100%;
+  text-align: center;
+  font-size: 0.9em;
+}
 /*-------------------Responsividade----------------------*/
 
 @media screen and (max-width: 950px) {
@@ -214,9 +213,7 @@ text-align: center;
     height: calc(99vh - 66px);
     width: calc(100vw - 6px);
   }
-  .preview{
+  .preview {
     visibility: hidden;
   }
-
 }
-

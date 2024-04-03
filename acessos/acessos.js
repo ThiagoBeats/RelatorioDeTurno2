@@ -24,11 +24,11 @@ function solicitarSenha() {
 document.addEventListener("DOMContentLoaded", handleFile, false);
 var dadosDeAcesso = "";
 function handleFile() {
-  var input = document.getElementById("input");
+  var urlPlanilha = "https://docs.google.com/spreadsheets/d/1SAhRFohoxuAP-BS5waSTHa7R2YWQ4OdGjQxoVBi4nNQ/edit?usp=sharing"
   var filePath = "../Acessos.xlsx";
 
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", filePath, true);
+  xhr.open("GET", urlPlanilha, true);
   xhr.responseType = "arraybuffer";
 
   xhr.onload = function (e) {
@@ -44,29 +44,35 @@ function handleFile() {
   };
 
   xhr.send();
+  var texto = document.getElementById("texto")
+  texto.innerText += " ."
+  if (texto.innerText.length > 40) {
+    texto.innerText = "Carregando planilha"
+  }
 }
 
-// var dadosDeAcesso = "";
-// var filePath = "../Acessos.xlsx";
-// var urlPlanilha = "https://docs.google.com/spreadsheets/d/1SAhRFohoxuAP-BS5waSTHa7R2YWQ4OdGjQxoVBi4nNQ/edit?usp=sharing"
-// var xhr = new XMLHttpRequest();
-// xhr.open("GET", filePath, true);
-// xhr.responseType = "arraybuffer";
+function verificarDados(params) {
+  console.log(dadosDeAcesso.length);
+  if (dadosDeAcesso.length < 10) {
+    var header = document.getElementById("invisibilizar")
+    var header2 = document.getElementById("invisibilizar2")
+    header.style.display = "none"
+    header2.style.display = "none"
+    var header = document.getElementById("texto")
+    header.style.display = "block"
+    handleFile()
+    setTimeout(verificarDados, 200);
+  }else{
+    var header = document.getElementById("invisibilizar")
+    var header2 = document.getElementById("invisibilizar2")
+    header.style.display = "block"
+    header2.style.display = "block"
+    var header = document.getElementById("texto")
+    header.style.display = "none"
+  }
+}
 
-// xhr.onload = function (e) {
-//   var arraybuffer = xhr.response;
-//   var data = new Uint8Array(arraybuffer);
-//   var workbook = XLSX.read(data, { type: "array" });
-//   console.log(workbook.SheetNames)
-//   workbook.SheetNames.forEach(function (nomeDaPagina) {
-//     var worksheet = workbook.Sheets[nomeDaPagina];
-//     var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-//     dadosDeAcesso = jsonData;
-
-//     // Faça o que desejar com os dados da planilha
-//   });
-// };
-// xhr.send();
+setTimeout(verificarDados, 200);
 
 var visibilidade = false;
 
@@ -96,7 +102,7 @@ function insert() {
 
   for (let index = 0; index < dadosDeAcesso.length; index++) {
     if (
-      dadosDeAcesso[index][0].toUpperCase().trim() == "TFA".toUpperCase().trim()
+      dadosDeAcesso[index][1].toUpperCase().trim() == "TFA".toUpperCase().trim()
     ) {
       var div = document.createElement("div");
 
@@ -111,7 +117,7 @@ function insert() {
     }
 
     if (
-      dadosDeAcesso[index][0].toUpperCase().trim() ==
+      dadosDeAcesso[index][1].toUpperCase().trim() ==
       "Pico".toUpperCase().trim()
     ) {
       var div = document.createElement("div");

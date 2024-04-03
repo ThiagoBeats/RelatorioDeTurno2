@@ -10,33 +10,44 @@
   <div id="dados-planilha"></div>
 
   <script>
-    var urlPlanilha = 'https://docs.google.com/spreadsheets/d/1SAhRFohoxuAP-BS5waSTHa7R2YWQ4OdGjQxoVBi4nNQ/edit?usp=sharing';
-    var dados = "";
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', urlPlanilha, true);
-    xhr.responseType = 'arraybuffer';
+function encontrarPalavrasChave(relatorio) {
+  const palavrasChave = {
+    supervisório: ['supervisório', 'supervisory', 'supervisor'],
+    instrumentoDeCampo: ['instrumento de campo', 'field instrument'],
+    erroDeLógica: ['erro de lógica', 'logic error'],
+    mauFuncionamentoDeEquipamento: ['mau funcionamento de equipamento', 'equipment malfunction'],
+    faltaDeComunicaçãoNaRede: ['falta de comunicação na rede', 'network communication failure']
+  };
 
-    xhr.onload = function(e) {
-      var arraybuffer = xhr.response;
-      var data = new Uint8Array(arraybuffer);
-      var workbook = XLSX.read(data, { type: 'array' });
-      workbook.SheetNames.forEach(function (sheetName) {
+  const palavrasEncontradas = [];
 
-      var worksheet = workbook.Sheets[sheetName];
-      var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-      dados = jsonData;
-
-      // Faça o que desejar com os dados da planilha
+  Object.entries(palavrasChave).forEach(([palavraChave, sinonimos]) => {
+    sinonimos.forEach(sinonimo => {
+      if (relatorio.toLowerCase().includes(sinonimo)) {
+        palavrasEncontradas.push(palavraChave);
+      }
     });
+  });
 
-      // primeiraPlanilha = workbook.Sheets[workbook.SheetNames[0]];
-      // var dados = XLSX.utils.sheet_to_json(primeiraPlanilha, { header: 1 });
+  return palavrasEncontradas;
+}
 
-      var divDados = document.getElementById('dados-planilha');
-      //divDados.innerHTML = '<pre>' + JSON.stringify(dados, null, 2) + '</pre>';
-    };
+// Exemplo de relatório
+const relatorio = `
+Turno: D 18h00 - 06h00 - Pedro Angelu
+Matricula: C0679576
+Data: 02/04/2024
+Processo: Mina de Sapecado
+Incidente: INC02480008
+Equipamento: 11-BR-09
+Acionamento: 02/04/2024 às 19:25
+Problema: rede supervisório Acionador pela equipe da manutenção devido a falha de mudança de operação do equipamento 11-BR-09, relatado a não mudança do estado Remoto para Manutenção.
+Solução: Foi verificado que não havia nenhum impedimento em relação a esta mudança ocorrendo via lógica, após alguns minutos a equipe de manutenção retornou informando mau contato e que o problema havia sido resolvido.
+Não houve apontamento de parada
+Encerramento: 02/04/2024 às 19:56`;
 
-    xhr.send();
+const palavrasChaveEncontradas = encontrarPalavrasChave(relatorio);
+console.log(palavrasChaveEncontradas);
   </script>
 </body>
 </html>

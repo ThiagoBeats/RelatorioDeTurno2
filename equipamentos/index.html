@@ -39,7 +39,10 @@
   </header>
   <main>
     
-    <div class="mainDiv">
+    <p id="texto" onclick="handleFile()">Carregando planilha</p>
+    <div class="mainDiv" id="mainDiv">
+
+    
       <div class="header">
         <p>Tag do equipamento: </p>
         <input id="tagInput" onchange="busca()" type="text" placeholder="Ex: 610-EM-04">
@@ -47,7 +50,7 @@
 
       </div>
       
-      <p class="buttons" id="results">0 resultados encontrados </p>
+      <p class="buttons"  id="results">0 resultados encontrados </p>
     </div>
     <hr>
     <div class="Informations" id="informations">

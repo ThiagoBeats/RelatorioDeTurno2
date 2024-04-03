@@ -29,69 +29,59 @@ function handleFile() {
 }*/
 
 var dados = "";
-var filePath = "../DadosPico.xlsx";
-var urlPlanilha = "https://docs.google.com/spreadsheets/d/1I2bW6DAkHR5oHLo-YvuDrwIxU7BYdJ0FLpaNUllZ2FA/edit?usp=sharing"
-var xhr = new XMLHttpRequest();
-xhr.open("GET", filePath, true);
-xhr.responseType = "arraybuffer";
 
-xhr.onload = function (e) {
-  var arraybuffer = xhr.response;
-  var data = new Uint8Array(arraybuffer);
-  var workbook = XLSX.read(data, { type: "array" });
-  var nomeDaPagina = "Sheet2";
-  workbook.SheetNames.forEach(function (nomeDaPagina) {
-    var worksheet = workbook.Sheets[nomeDaPagina];
-    var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-    dados = jsonData;
+document.addEventListener("DOMContentLoaded", handleFile, false);
 
-    // Faça o que desejar com os dados da planilha
-  });
-};
-xhr.send();
+function handleFile() {
+  var filePath = "../DadosPico.xlsx";
+  var urlPlanilha2 =
+    "https://1drv.ms/x/s!AnZLoHsTfdi1gdptKBaz0IMoy-1tLg?e=SXAidX";
+  var urlPlanilha =
+    "https://docs.google.com/spreadsheets/d/1I2bW6DAkHR5oHLo-YvuDrwIxU7BYdJ0FLpaNUllZ2FA/edit?usp=sharing";
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", urlPlanilha, true);
+  xhr.responseType = "arraybuffer";
 
+  xhr.onload = function (e) {
+    var arraybuffer = xhr.response;
+    var data = new Uint8Array(arraybuffer);
+    var workbook = XLSX.read(data, { type: "array" });
+    var nomeDaPagina = "Sheet2";
+    workbook.SheetNames.forEach(function (nomeDaPagina) {
+      var worksheet = workbook.Sheets[nomeDaPagina];
+      var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+      dados = jsonData;
 
-
-function recarregar(params) {
-  location.reload(true);
-}
-
-var counter = 0
-
-// function verificarDados() {
-//      console.log("Recarregando")
-//   if (dados < 10) {
-//     counter += 1
-//     console.log(counter)
-//     location.reload(true);
-//   } else {
-//     setTimeout(verificarDados, 20000); // Chama a função novamente após 1 segundo
-//   }
-// }
-// verificarDados();
-
-
-// function verificarDados(params) {
-//   if (dados.length < 10) {
-//     console.log("Não carregado")
-//     setTimeout(verificarDados, 5000);
-//   }
-// }
-
-// verificarDados()
-
-// while (dados < 10) {
-//   console.log("Recarregando")
-//     location.reload();
-// }
-
-if (dados.length < 5) {
-  document.getElementsByClassName("btnRefresh").innerHTML = 'Planilha não carregada. Recarregue a página'
-}else{
-  document.getElementsByClassName("btnRefresh").innerHTML = ''
+      // Faça o que desejar com os dados da planilha
+    });
+  };
+  xhr.send();
+  var texto = document.getElementById("texto")
+  texto.innerText += " ."
+  if (texto.innerText.length > 40) {
+    texto.innerText = "Carregando planilha"
+  }
 }
 
 
+function verificarDados(params) {
+  console.log(dados.length);
+  if (dados.length < 10) {
+    var header = document.getElementById("mainDiv")
+    header.style.display = "none"
+    var header = document.getElementById("texto")
+    header.style.display = "block"
+    handleFile()
+    setTimeout(verificarDados, 200);
+  }else{
+    var header = document.getElementById("mainDiv")
+    header.style.display = "flex"
+    var header = document.getElementById("texto")
+    header.style.display = "none"
+  }
+}
+
+setTimeout(verificarDados, 200);
 
 function excluirParagrafos() {
   var paragrafos = document.getElementsByClassName("paragr");
@@ -114,25 +104,25 @@ function busca() {
     if (typeof dados[index][2] != "undefined") {
       if (
         dados[index][2]
-          .toUpperCase().replace(/-/g, "")
+          .toUpperCase()
+          .replace(/-/g, "")
           .includes(tagToFind.toUpperCase().replace(/-/g, "").trim())
       ) {
         contagem += 1;
         textOutput =
-        dados[index][0] + " - " + 
-        dados[index][1] +
+          dados[index][0] +
+          " - " +
+          dados[index][1] +
           "  -  Tag: " +
           dados[index][2] +
           "  -  PLC: " +
           dados[index][3] +
           "  -  Localidade: " +
-          dados[index][4]
-          if(typeof(dados[index][5]) != 'undefined'){
-            textOutput +=
-            "  -    Comentários: " +
-            dados[index][5].toLowerCase() +
-            "\n\n";
-          }
+          dados[index][4];
+        if (typeof dados[index][5] != "undefined") {
+          textOutput +=
+            "  -    Comentários: " + dados[index][5].toLowerCase() + "\n\n";
+        }
         var paragr = document.createElement("p");
         paragr.textContent = textOutput;
         paragr.style.backgroundColor = color;
@@ -151,5 +141,3 @@ function busca() {
     contagem + " Resultados encontrados";
   //document.getElementById("return").value = textOutput;
 }
-
-

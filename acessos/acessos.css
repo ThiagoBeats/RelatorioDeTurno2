@@ -159,6 +159,13 @@ main {
     scale: 1.1;
   }
 }
+#texto{
+  width: 100%;
+  text-align: center;
+  font-size: 0.9em;
+  height: 5%;
+}
+
 
 @media screen and (max-width: 950px) {
   main {
