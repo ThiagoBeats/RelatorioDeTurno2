@@ -101,6 +101,7 @@ function insert() {
   excluirLinhas();
 
   for (let index = 0; index < dadosDeAcesso.length; index++) {
+    if(typeof(dadosDeAcesso[index][1]) != "undefined"){
     if (
       dadosDeAcesso[index][1].toUpperCase().trim() == "TFA".toUpperCase().trim()
     ) {
@@ -131,5 +132,5 @@ function insert() {
       }
       document.getElementsByClassName("pico")[0].appendChild(div);
     }
-  }
+  }}
 }
