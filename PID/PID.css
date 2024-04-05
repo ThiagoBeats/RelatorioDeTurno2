@@ -156,3 +156,23 @@ tfoot td {
 #col3{
   width: 45%;
 }
+
+
+
+
+@media screen and (max-width: 950px) {
+  main {
+    gap: 100%;
+    position: absolute;
+    top: calc(66px);
+    left: 3px;
+    height: calc(99vh - 66px);
+    width: calc(100vw - 6px);
+  }
+  .preview {
+    visibility: hidden;
+  }
+
+  
+}
+
