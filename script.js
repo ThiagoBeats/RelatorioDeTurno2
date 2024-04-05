@@ -118,6 +118,7 @@ function atualizaSolucoes() {
 }
 var DadosDoUsuario;
 function atualizaParams() {
+  imgPerfil()
   turno = document.getElementById("Turno").value;
   nome = document.getElementById("Nome").value;
   data = document.getElementById("Data").value;
@@ -204,4 +205,26 @@ function encaminhar() {
 
   var fullMessage = "https://wa.me/?text=" + encodedText;
   window.open(fullMessage, "_blank");
+}
+
+function imgPerfil(params) {
+  var img = document.getElementById("imgPerfil")
+  nome = document.getElementById("Nome");
+  if (nome.value.toUpperCase().includes("PEDRO")) {
+    img.src = "./Imagens/pedro.jpg"
+  }else{
+    if (nome.value.toUpperCase().includes("LORENA")) {
+      img.src = "./Imagens/lorena.jpg"
+    }else{
+      if (nome.value.toUpperCase().includes("OTAVIO") || nome.value.toUpperCase().includes("OTÁVIO")) {
+        img.src = "./Imagens/otavio.jpg"
+      }else{
+          if (nome.value.toUpperCase().includes("LUIS")) {
+            img.src = "./Imagens/luis.jpg"
+          }
+        else{
+          img.src = "./Imagens/imgteste.jpg"}
+      }
+    }
+  }
 }

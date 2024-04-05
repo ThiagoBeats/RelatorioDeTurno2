@@ -1,53 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Leitura de Planilha Online</title>
-  <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+  <title>Adicionar Dado em Arquivo CSV</title>
 </head>
 <body>
-  <h1>Leitura de Planilha Online</h1>
-
-  <div id="dados-planilha"></div>
+  <input type="file" id="fileInput">
+  <br>
+  <button id="btnAdicionar">Adicionar Dado</button>
 
   <script>
-function encontrarPalavrasChave(relatorio) {
-  const palavrasChave = {
-    supervisório: ['supervisório', 'supervisory', 'supervisor'],
-    instrumentoDeCampo: ['instrumento de campo', 'field instrument'],
-    erroDeLógica: ['erro de lógica', 'logic error'],
-    mauFuncionamentoDeEquipamento: ['mau funcionamento de equipamento', 'equipment malfunction'],
-    faltaDeComunicaçãoNaRede: ['falta de comunicação na rede', 'network communication failure']
-  };
+    // Função para adicionar um novo dado ao arquivo CSV
+    async function adicionarDadoAoCSV(file, novoDado) {
+      try {
+        // Ler o conteúdo do arquivo CSV
+        const contents = await file.text();
 
-  const palavrasEncontradas = [];
+        // Separar as linhas do CSV
+        const linhas = contents.split('\n');
 
-  Object.entries(palavrasChave).forEach(([palavraChave, sinonimos]) => {
-    sinonimos.forEach(sinonimo => {
-      if (relatorio.toLowerCase().includes(sinonimo)) {
-        palavrasEncontradas.push(palavraChave);
+        // Adicionar o novo dado à última linha
+        const ultimaLinha = linhas[linhas.length - 1];
+        const novaLinha = ultimaLinha + ',' + novoDado;
+        linhas[linhas.length - 1] = novaLinha;
+
+        // Criar o novo conteúdo CSV
+        const novoConteudo = linhas.join('\n');
+
+        // Criar um objeto de gravação de arquivo
+        const writable = await file.createWritable();
+
+        // Escrever o novo conteúdo no arquivo
+        await writable.write(novoConteudo);
+
+        // Fechar o arquivo
+        await writable.close();
+
+        console.log('Dado adicionado com sucesso ao arquivo CSV!');
+      } catch (error) {
+        console.error('Erro ao adicionar dado ao arquivo CSV:', error);
+      }
+    }
+
+    // Evento de clique no botão
+    document.getElementById('btnAdicionar').addEventListener('click', async function() {
+      const caminhoArquivo = document.getElementById('fileInput').value;
+      const novoDado = 'Novo Dado';
+
+      try {
+        const arquivo = await window.showOpenFilePicker({
+          types: [
+            {
+              description: 'Arquivos CSV',
+              accept: {
+                'text/csv': ['.csv'],
+              },
+            },
+          ],
+        });
+        
+        if (arquivo.length > 0) {
+          adicionarDadoAoCSV(arquivo[0], novoDado);
+        }
+      } catch (error) {
+        console.error('Erro ao selecionar o arquivo:', error);
       }
     });
-  });
-
-  return palavrasEncontradas;
-}
-
-// Exemplo de relatório
-const relatorio = `
-Turno: D 18h00 - 06h00 - Pedro Angelu
-Matricula: C0679576
-Data: 02/04/2024
-Processo: Mina de Sapecado
-Incidente: INC02480008
-Equipamento: 11-BR-09
-Acionamento: 02/04/2024 às 19:25
-Problema: rede supervisório Acionador pela equipe da manutenção devido a falha de mudança de operação do equipamento 11-BR-09, relatado a não mudança do estado Remoto para Manutenção.
-Solução: Foi verificado que não havia nenhum impedimento em relação a esta mudança ocorrendo via lógica, após alguns minutos a equipe de manutenção retornou informando mau contato e que o problema havia sido resolvido.
-Não houve apontamento de parada
-Encerramento: 02/04/2024 às 19:56`;
-
-const palavrasChaveEncontradas = encontrarPalavrasChave(relatorio);
-console.log(palavrasChaveEncontradas);
   </script>
 </body>
 </html>

@@ -55,7 +55,6 @@ body {
   font-weight: 600;
   color: white;
   overflow: scroll;
-  overflow-x: hidden;
   width: calc(100vw - 9px - 5vw);
 }
 
@@ -100,6 +99,7 @@ select {
   padding-top: 1%;
   display: flex;
   gap: 1%;
+  margin: 1%;
 }
 
 table {
