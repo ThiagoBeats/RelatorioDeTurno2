@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="../header.css" />
         <link rel="stylesheet" href="./PID.css">
         <link rel="shortcut icon" href="../Imagens/icons8-escritório-94.png" type="image/x-icon">
+    <script src="./PID.js"></script>
     </head>
 <body>
     <header><div>
@@ -36,6 +37,133 @@
     </header>
 
     <main>
+        <div class="informacoes">
+            <div class="div1"><label for="indice">Índice do PID</label>
+                <input value="1" onchange="atualizar()" name="indice" type="number" id="indice"></div>
+            <div class="div2"><label for="PLC">PLC</label>
+                <select
+                  type="text"
+                  name="PLC"
+                  id="PLC"
+                  onchange="atualizar()"
+                >
+                  <option value="Planta">Planta</option>
+                  <option value="PFFA">PFFA</option>
+                  <option value="Flotacao">Flotação</option>
+                  <option value="SBR">SBR</option>
+                </select></div>
+            
+        </div>
+        <hr>
+        <div class="divControle">
+            <Label>Controle: </Label>
+            <p id="controle">N77[XX]</p>
+        </div>
+
+        <div class="tabela">
+            <table>
+                <thead>
+                  <tr>
+                    <th id="col1" scope="col">Descrição</th>
+                    <th id="col2" scope="col">Endereço Contrologix</th>
+                    <th id="col3" scope="col">Endereço OPC</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">CO Low</th>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">CO High</th>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">P</th>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">I</th>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">D</th>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">PV</th>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">SP Atual</th>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">CO</th>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Modo</th>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">SP Modo Automático</th>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">CO Manual</th>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Tieback</th>
+                    <td id="v1">-</td>
+                    <td id="v2">-</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Botão de seleção de equação (ISA/TI)</th>
+                    <td id="v3">-</td>
+                    <td id="v4">-</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Botão de seleção de ação (Direta/Reversa)</th>
+                    <td id="v5">-</td>
+                    <td id="v6">-</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Botão de seleção derivativo (PV/Erro)</th>
+                    <td id="v7">-</td>
+                    <td id="v8">-</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Botão de seleção manual</th>
+                    <td id="v9">-</td>
+                    <td id="v10">-</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Botão de seleção Automático</th>
+                    <td id="v11">-</td>
+                    <td id="v1">-</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Botão de seleção Remoto</th>
+                    <td id="v12">-</td>
+                    <td id="v13">-</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+        </div>
     </main>
 
 

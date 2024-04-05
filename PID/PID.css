@@ -37,12 +37,11 @@ h1{
   padding: 0;
 }
 hr {
-  width: 95%;
-  margin: 5%;
+  width: 100%;
 }
 
 body {
-  height: 97vh;
+  height: 95vh;
   min-height: 10vh;
   display: flex;
   align-items: center;
@@ -70,9 +69,90 @@ main {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(7.4px);
   -webkit-backdrop-filter: blur(7.4px);
-  height: 95vh;
+  height: 91vh;
   gap: 10px;
   overflow-x: hidden;
+  padding: 1%;
   
 }
 
+input,
+select {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 25px;
+  border-radius: 10px;
+  border: solid lightgray 2px;
+  font-family: "Roboto";
+  text-align: center;
+  width: auto;
+  height: 30px;
+}
+
+.informacoes{
+>div{margin: 1%;}
+}
+
+.divControle{
+  padding-top: 1%;
+  display: flex;
+  gap: 1%;
+}
+
+table {
+  border-collapse: collapse;
+  border: 2px solid rgb(140 140 140);
+  color: black;
+  font-size: 1em;
+  font-family: "Roboto";
+  width: 100%;
+}
+
+caption {
+  caption-side: bottom;
+  padding: 10px;
+  font-weight: bold;
+}
+
+thead,
+tfoot {
+  background-color: rgb(228 240 245);
+}
+
+th,
+td {
+  border: 1px solid rgb(160 160 160);
+  padding: 8px 10px;
+}
+
+td:last-of-type {
+  text-align: left;
+}
+
+tbody > tr:nth-of-type(even) {
+  background-color: lightgray;
+}
+tbody > tr:nth-of-type(odd) {
+  background-color: white;
+}
+
+tfoot th {
+  text-align: right;
+}
+
+tfoot td {
+  font-weight: bold;
+}
+
+#col1{
+  width: 35%;
+}
+#col2{
+  width: 20%;
+}
+#col3{
+  width: 45%;
+}
