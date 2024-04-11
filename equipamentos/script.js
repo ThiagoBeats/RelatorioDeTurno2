@@ -56,32 +56,33 @@ function handleFile() {
     });
   };
   xhr.send();
-  var texto = document.getElementById("texto")
-  texto.innerText += " ."
+  var texto = document.getElementById("texto");
+  texto.innerText += " .";
   if (texto.innerText.length > 40) {
-    texto.innerText = "Carregando planilha"
+    texto.innerText = "Carregando planilha";
   }
 }
 
-
+//Verifica se a tabela de dados tem tamanho maior que 10, se não, é que ela não foi carregada completamente
+//ai, a requisição é feita novamente
 function verificarDados(params) {
   console.log(dados.length);
   if (dados.length < 10) {
-    var header = document.getElementById("mainDiv")
-    header.style.display = "none"
-    var header = document.getElementById("texto")
-    header.style.display = "block"
-    handleFile()
-    setTimeout(verificarDados, 200);
-  }else{
-    var header = document.getElementById("mainDiv")
-    header.style.display = "flex"
-    var header = document.getElementById("texto")
-    header.style.display = "none"
+    var header = document.getElementById("mainDiv");
+    header.style.display = "none";
+    var header = document.getElementById("texto");
+    header.style.display = "block";
+    handleFile();
+    setTimeout(verificarDados, 50);
+  } else {
+    var header = document.getElementById("mainDiv");
+    header.style.display = "flex";
+    var header = document.getElementById("texto");
+    header.style.display = "none";
   }
 }
 
-setTimeout(verificarDados, 200);
+setTimeout(verificarDados, 50);
 
 function excluirParagrafos() {
   var paragrafos = document.getElementsByClassName("paragr");
@@ -134,6 +135,51 @@ function busca() {
         paragr.id = "paragr";
         paragr.className = "paragr";
         document.getElementById("informations").appendChild(paragr);
+      }
+    }
+  }
+  document.getElementById("results").innerHTML =
+    contagem + " Resultados encontrados";
+  //document.getElementById("return").value = textOutput;
+}
+
+function busca2() {
+  excluirParagrafos();
+  var contagem = 0;
+  var tagToFind = document.getElementById("tagInput").value;
+  for (let index = 0; index < dados.length; index++) {
+    if (typeof dados[index][2] != "undefined") {
+      if (
+        dados[index][2]
+          .toUpperCase()
+          .replace(/-/g, "")
+          .includes(tagToFind.toUpperCase().replace(/-/g, "").trim())
+      ) {
+        contagem += 1;
+        // textOutput =
+        //   dados[index][0] +
+        //   " - " +
+        //   dados[index][1] +
+        //   "  -  Tag: " +
+        //   dados[index][2] +
+        //   "  -  PLC: " +
+        //   dados[index][3] +
+        //   "  -  Localidade: " +
+        //   dados[index][4];
+        // if (typeof dados[index][5] != "undefined") {
+        //   textOutput +=
+        //     "  -    Comentários: " + dados[index][5].toLowerCase() + "\n\n";
+        // }
+        var head = document.createElement("div");
+        head.className = 'head'
+        for (let index2 = 0; index2 < 6; index2++) {
+          var paragr = document.createElement("p");
+          paragr.textContent = dados[index][index2];
+          paragr.id = "paragr";
+          paragr.className = "paragr";
+          head.appendChild(paragr);
+        }
+        document.getElementById("informations").appendChild(head);
       }
     }
   }

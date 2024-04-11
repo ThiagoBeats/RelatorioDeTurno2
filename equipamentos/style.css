@@ -204,6 +204,50 @@ textarea {
   text-align: center;
   font-size: 0.9em;
 }
+
+.head {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 1px solid darkgrey;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  > p {
+    word-wrap: break-word;
+    text-align: left;
+    color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+  }}
+
+  .head:nth-child(odd) {
+    background-color: lightgray;
+  }
+  .head:nth-child(even) {
+    background-color: white;
+  }
+
+  /* .head p:nth-child(1) {
+    width: 15%;
+  }
+  .head p:nth-child(2) {
+    width: 15%;
+  }
+  .head p:nth-child(3) {
+    width: 15%;
+  }
+  .head p:nth-child(4) {
+    width: 30%;
+  }
+  .head p:nth-child(5) {
+    width: 25%;
+  } */
 /*-------------------Responsividade----------------------*/
 
 @media screen and (max-width: 950px) {

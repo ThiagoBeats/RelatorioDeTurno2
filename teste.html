@@ -1,70 +1,46 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Adicionar Dado em Arquivo CSV</title>
+  <title>Leitura de Arquivo de Texto</title>
 </head>
+
 <body>
   <input type="file" id="fileInput">
-  <br>
-  <button id="btnAdicionar">Adicionar Dado</button>
+  <button id="btnLer">Ler Arquivo</button>
 
   <script>
-    // Função para adicionar um novo dado ao arquivo CSV
-    async function adicionarDadoAoCSV(file, novoDado) {
-      try {
-        // Ler o conteúdo do arquivo CSV
-        const contents = await file.text();
-
-        // Separar as linhas do CSV
-        const linhas = contents.split('\n');
-
-        // Adicionar o novo dado à última linha
-        const ultimaLinha = linhas[linhas.length - 1];
-        const novaLinha = ultimaLinha + ',' + novoDado;
-        linhas[linhas.length - 1] = novaLinha;
-
-        // Criar o novo conteúdo CSV
-        const novoConteudo = linhas.join('\n');
-
-        // Criar um objeto de gravação de arquivo
-        const writable = await file.createWritable();
-
-        // Escrever o novo conteúdo no arquivo
-        await writable.write(novoConteudo);
-
-        // Fechar o arquivo
-        await writable.close();
-
-        console.log('Dado adicionado com sucesso ao arquivo CSV!');
-      } catch (error) {
-        console.error('Erro ao adicionar dado ao arquivo CSV:', error);
-      }
+    var valorDaVariavel = 1996
+    // Função para definir um cookie
+    function setCookie(nome, valor, dias) {
+      const dataExpiracao = new Date();
+      dataExpiracao.setTime(dataExpiracao.getTime() + (dias * 24 * 60 * 60 * 1000));
+      const expires = 'expires=' + dataExpiracao.toUTCString();
+      document.cookie = nome + '=' + valor + ';' + expires + ';path=/';
     }
 
-    // Evento de clique no botão
-    document.getElementById('btnAdicionar').addEventListener('click', async function() {
-      const caminhoArquivo = document.getElementById('fileInput').value;
-      const novoDado = 'Novo Dado';
-
-      try {
-        const arquivo = await window.showOpenFilePicker({
-          types: [
-            {
-              description: 'Arquivos CSV',
-              accept: {
-                'text/csv': ['.csv'],
-              },
-            },
-          ],
-        });
-        
-        if (arquivo.length > 0) {
-          adicionarDadoAoCSV(arquivo[0], novoDado);
+    // Função para obter o valor de um cookie
+    function getCookie(nome) {
+      const name = nome + '=';
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i];
+        while (cookie.charAt(0) === ' ') {
+          cookie = cookie.substring(1);
         }
-      } catch (error) {
-        console.error('Erro ao selecionar o arquivo:', error);
+        if (cookie.indexOf(name) === 0) {
+          return cookie.substring(name.length, cookie.length);
+        }
       }
-    });
+      return '';
+    }
+
+    // Salvar o valor da variável em um cookie com validade de 1 dia
+    //setCookie('nomeDaVariavel', valorDaVariavel, 1);
+
+    // Recuperar o valor da variável do cookie
+    //const valorRecuperado = getCookie('nomeDaVariavel');
   </script>
 </body>
+
 </html>

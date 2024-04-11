@@ -61,7 +61,7 @@ function verificarDados(params) {
     var header = document.getElementById("texto")
     header.style.display = "block"
     handleFile()
-    setTimeout(verificarDados, 200);
+    setTimeout(verificarDados, 50);
   }else{
     var header = document.getElementById("invisibilizar")
     var header2 = document.getElementById("invisibilizar2")
@@ -71,8 +71,7 @@ function verificarDados(params) {
     header.style.display = "none"
   }
 }
-
-setTimeout(verificarDados, 200);
+setTimeout(verificarDados, 50);
 
 var visibilidade = false;
 

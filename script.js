@@ -1,5 +1,10 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   // Esta função será executada quando o DOM estiver completamente carregado
+  document.getElementById("solucao").value = localStorage.getItem("relatorioSalvo")
+  document.getElementById("Turno").value = localStorage.getItem("turnoSalvo")
+  document.getElementById("Nome").value = localStorage.getItem("nomeSalvo")
+  document.getElementById("Matricula").value = localStorage.getItem("matriculaSalva")
+  atualizaParams()
   var elemento = document.getElementById("imgRelatorio");
   elemento.disabled = true;
 });
@@ -60,6 +65,7 @@ var solucoes = [
 ];
 
 function atualizaSolucoes() {
+
   atualizaParams2();
   var textoProblema = document.getElementById("probl").value;
   var textoSolucao = document.getElementById("solu").value;
@@ -104,25 +110,38 @@ function atualizaSolucoes() {
           "\n\n" +
           "*Solução:* " +
           solucoes[index] +
-          "\n\n" + Apontamento +
+          "\n\n" +
+          Apontamento +
           "\n\n*Encerramento:* " +
           Encerramento +
           "\n_\n";
         document.getElementById("Incidente").value = "";
         document.getElementById("probl").value = "";
         document.getElementById("solu").value = "";
+        salvaDados()
         break;
       }
     }
   }
 }
+
+function salvaDados() {
+  var relat = document.getElementById("solucao").value
+  localStorage.setItem("relatorioSalvo", relat)
+  localStorage.setItem("nomeSalvo", nome)
+  localStorage.setItem("matriculaSalva", matricula)
+  localStorage.setItem("turnoSalvo", turno)
+}
 var DadosDoUsuario;
 function atualizaParams() {
-  imgPerfil()
+
+  imgPerfil();
   turno = document.getElementById("Turno").value;
   nome = document.getElementById("Nome").value;
   data = document.getElementById("Data").value;
   matricula = document.getElementById("Matricula").value;
+
+  
 
   var ano = data.substring(0, 4);
   var mes = data.substring(5, 7);
@@ -151,11 +170,11 @@ function atualizaParams2() {
   Equipamento = document.getElementById("Equipamento").value;
   Acionamento = document.getElementById("Acionamento").value;
   Encerramento = document.getElementById("Encerramento").value;
-  Apontamento = document.getElementById("apontamento").value
-  if (Apontamento == '' || Apontamento == 0) {
-    Apontamento = "*Não houve apontamento de parada*"
-  }else{
-    Apontamento = "*Houve apontamento de aproximadamente " + Apontamento + "*"
+  Apontamento = document.getElementById("apontamento").value;
+  if (Apontamento == "" || Apontamento == 0) {
+    Apontamento = "*Não houve apontamento de parada*";
+  } else {
+    Apontamento = "*Houve apontamento de aproximadamente " + Apontamento + "*";
   }
 
   var Aano = Acionamento.substring(0, 4);
@@ -172,7 +191,7 @@ function atualizaParams2() {
   Encerramento = Edia + "/" + Emes + "/" + Eano + " às " + horaEncerramento;
 }
 
-var TextToCopy = ''
+var TextToCopy = "";
 function copiar() {
   TextToCopy =
     document.getElementById("formatedText").innerText +
@@ -183,15 +202,15 @@ function copiar() {
       window.alert("Texto copiado com sucesso!");
     },
     function (err) {
-        window.alert("Erro ao copiar texto: ", err);
+      window.alert("Erro ao copiar texto: ", err);
     }
   );
 }
 
 function apagar() {
-    if (window.confirm("Deseja mesmo apagar o relatório criado? ")) {
-        document.getElementById("solucao").value = ''
-    }
+  if (window.confirm("Deseja mesmo apagar o relatório criado? ")) {
+    document.getElementById("solucao").value = "";
+  }
 }
 
 function encaminhar() {
@@ -208,23 +227,27 @@ function encaminhar() {
 }
 
 function imgPerfil(params) {
-  var img = document.getElementById("imgPerfil")
+  var img = document.getElementById("imgPerfil");
   nome = document.getElementById("Nome");
   if (nome.value.toUpperCase().includes("PEDRO")) {
-    img.src = "./Imagens/pedro.jpg"
-  }else{
+    img.src = "./Imagens/pedro.jpg";
+  } else {
     if (nome.value.toUpperCase().includes("LORENA")) {
-      img.src = "./Imagens/lorena.jpg"
-    }else{
-      if (nome.value.toUpperCase().includes("OTAVIO") || nome.value.toUpperCase().includes("OTÁVIO")) {
-        img.src = "./Imagens/otavio.jpg"
-      }else{
-          if (nome.value.toUpperCase().includes("LUIS")) {
-            img.src = "./Imagens/luis.jpg"
-          }
-        else{
-          img.src = "./Imagens/imgteste.jpg"}
+      img.src = "./Imagens/lorena.jpg";
+    } else {
+      if (
+        nome.value.toUpperCase().includes("OTAVIO") ||
+        nome.value.toUpperCase().includes("OTÁVIO")
+      ) {
+        img.src = "./Imagens/otavio.jpg";
+      } else {
+        if (nome.value.toUpperCase().includes("LUIS")) {
+          img.src = "./Imagens/luis.jpg";
+        } else {
+          img.src = "./Imagens/imgteste.jpg";
+        }
       }
     }
   }
 }
+
