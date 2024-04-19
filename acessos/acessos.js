@@ -102,12 +102,12 @@ function insert() {
   for (let index = 0; index < dadosDeAcesso.length; index++) {
     if(typeof(dadosDeAcesso[index][1]) != "undefined"){
     if (
-      dadosDeAcesso[index][1].toUpperCase().trim() == "TFA".toUpperCase().trim()
+      dadosDeAcesso[index][0].toUpperCase().trim() == "TFA".toUpperCase().trim()
     ) {
       var div = document.createElement("div");
 
       div.className = "head novaLinha";
-      for (let i = 2; i < 7; i++) {
+      for (let i = 1; i < 6; i++) {
         var p = document.createElement("p");
         p.className = "novaLinha";
         p.textContent = dadosDeAcesso[index][i];
@@ -117,13 +117,13 @@ function insert() {
     }
 
     if (
-      dadosDeAcesso[index][1].toUpperCase().trim() ==
+      dadosDeAcesso[index][0].toUpperCase().trim() ==
       "Pico".toUpperCase().trim()
     ) {
       var div = document.createElement("div");
 
       div.className = "head novaLinha";
-      for (let i = 2; i < 7; i++) {
+      for (let i = 1; i < 6; i++) {
         var p = document.createElement("p");
         p.className = "novaLinha";
         p.textContent = dadosDeAcesso[index][i];

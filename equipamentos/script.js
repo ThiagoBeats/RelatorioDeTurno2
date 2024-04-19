@@ -33,7 +33,7 @@ var dados = "";
 document.addEventListener("DOMContentLoaded", handleFile, false);
 
 function handleFile() {
-  var filePath = "../DadosPico.xlsx";
+  var filePath = "../Equipamentos.xlsx";
   var urlPlanilha2 =
     "https://1drv.ms/x/s!AnZLoHsTfdi1gdptKBaz0IMoy-1tLg?e=SXAidX";
   var urlPlanilha =
@@ -102,9 +102,9 @@ function busca() {
   var textOutput = "";
   var color = "lightgray";
   for (let index = 0; index < dados.length; index++) {
-    if (typeof dados[index][2] != "undefined") {
+    if (typeof dados[index][1] != "undefined") {
       if (
-        dados[index][2]
+        dados[index][1]
           .toUpperCase()
           .replace(/-/g, "")
           .includes(tagToFind.toUpperCase().replace(/-/g, "").trim())
@@ -112,17 +112,15 @@ function busca() {
         contagem += 1;
         textOutput =
           dados[index][0] +
-          " - " +
-          dados[index][1] +
           "  -  Tag: " +
-          dados[index][2] +
+          dados[index][1] +
           "  -  PLC: " +
-          dados[index][3] +
+          dados[index][2] +
           "  -  Localidade: " +
-          dados[index][4];
-        if (typeof dados[index][5] != "undefined") {
+          dados[index][3];
+        if (typeof dados[index][4] != "undefined") {
           textOutput +=
-            "  -    Comentários: " + dados[index][5].toLowerCase() + "\n\n";
+            "  -    Comentários: " + dados[index][4].toLowerCase() + "\n\n";
         }
         var paragr = document.createElement("p");
         paragr.textContent = textOutput;
