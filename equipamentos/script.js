@@ -39,7 +39,7 @@ function handleFile() {
   var urlPlanilha =
     "https://docs.google.com/spreadsheets/d/1I2bW6DAkHR5oHLo-YvuDrwIxU7BYdJ0FLpaNUllZ2FA/edit?usp=sharing";
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", urlPlanilha, true);
+  xhr.open("GET", filePath, true);
   xhr.responseType = "arraybuffer";
 
   xhr.onload = function (e) {
