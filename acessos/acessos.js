@@ -28,7 +28,7 @@ function handleFile() {
   var filePath = "../Acessos.xlsx";
 
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", urlPlanilha, true);
+  xhr.open("GET", filePath, true);
   xhr.responseType = "arraybuffer";
 
   xhr.onload = function (e) {
