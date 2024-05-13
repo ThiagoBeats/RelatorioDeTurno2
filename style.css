@@ -135,6 +135,21 @@ main {
   }
 }
 
+.setor {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 2%;
+  padding: 2%;
+}
+#setor {
+  width: 40%;
+  min-width: 300px;
+  height: auto;
+  font-size: 1.2em;
+}
+
 input,
 select {
   display: flex;
@@ -148,6 +163,7 @@ select {
   font-family: "Roboto";
   text-align: center;
   width: auto;
+  max-width: 500px;
   height: 30px;
 }
 
@@ -199,7 +215,7 @@ select {
     padding: 2%;
     font-size: 1rem;
   }
-  >textarea{
+  > textarea {
     font-size: 1rem;
     font-family: "Roboto", sans-serif;
     font-weight: 600;
@@ -238,7 +254,7 @@ select {
   }
 }
 
-.apont{
+.apont {
   width: 99%;
   display: flex;
   align-items: center;
@@ -246,10 +262,10 @@ select {
   flex-direction: column;
   margin-bottom: 5%;
 }
-.flexStart{
+.flexStart {
   align-items: flex-start;
 }
-.flexEnd{
+.flexEnd {
   align-items: flex-end;
 }
 
@@ -262,7 +278,7 @@ select {
     height: calc(99vh - 66px);
     width: calc(60vw);
   }
-  .preview{
+  .preview {
     top: 66px;
     left: calc(6px + 60vw);
     height: calc(99vh - 66px);
@@ -277,7 +293,7 @@ select {
     height: calc(99vh - 66px);
     width: calc(100vw - 3px);
   }
-  .preview{
+  .preview {
     top: calc(99vh + 3px);
     left: 3px;
     height: calc(70vh);
@@ -285,50 +301,69 @@ select {
   }
 }
 
-
 @media screen and (max-width: 450px) {
-  .Left{
+  .Left {
     justify-content: center;
-    >div{
+    > div {
       align-items: center;
       justify-content: center;
-      >label{
+      > label {
         text-align: center;
       }
-      >input, select{
+      > input,
+      select {
         width: 50vw;
       }
     }
-    
   }
 
-  .lastSection{
-    >div{
+  .lastSection {
+    > div {
       align-items: center;
       justify-content: center;
     }
   }
 
-  .mainDiv{
+  .mainDiv {
     align-items: center;
     justify-content: center;
   }
 
-  .div1{
+  .div1 {
     flex-direction: column;
-    >div{>input{
-      width: 50vw;}}
+    > div {
+      > input {
+        width: 50vw;
+      }
+    }
   }
 }
 
+.final {
+  padding: 1%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    >input, select{
+      width: 70%;
+    }
+  }
+}
 
 @media screen and (max-width: 420px) {
-  .div2{
+  .div2 {
     flex-direction: column;
-    >div{
+    > div {
       justify-content: center;
       align-items: center;
-      >input{
+      > input {
         width: 50vw;
       }
     }

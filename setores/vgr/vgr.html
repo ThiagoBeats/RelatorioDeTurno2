@@ -4,40 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Relatório de turno</title>
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./header.css" />
-    <link rel="shortcut icon" href="./Imagens/icons8-escritório-94.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="../../header.css" />
+    <link rel="shortcut icon" href="../../Imagens/icons8-escritório-94.png" type="image/x-icon">
   </head>
 
   <body>
     <header>
       <div>
-        <a id="imgPID"  id="imgRelatorio" href="./PID/PID.html">
-          <img src="./Imagens/grafico-de-linha.png" alt="" />
+        <a id="imgPID"  id="imgRelatorio" href="../../PID/PID.html">
+          <img src="../../Imagens/grafico-de-linha.png" alt="" />
         </a>
         <p class="tooltip">Encontrar PID</p>
       </div>
       <div>
         <p id="imgRelatorio">
-          <img src="./Imagens/icons8-relatório-100.png" alt="" />
+          <img src="../../Imagens/icons8-relatório-100.png" alt="" />
         </p>
         <p class="tooltip">Relatório</p>
       </div>
       <div>
-        <a id="imgEquipamentos" href="./equipamentos/index.html">
-          <img src="./Imagens/icons8-equipment-64.png" alt="" />
+        <a id="imgEquipamentos" href="../../equipamentos/index.html">
+          <img src="../../Imagens/icons8-equipment-64.png" alt="" />
         </a>
         <p class="tooltip">Equipamentos</p>
       </div>
       <div>
-        <a id="imgAcessos" href="./acessos/acessos.html">
-          <img src="./Imagens/icons8-lock-48.png" alt="" />
+        <a id="imgAcessos" href="../../acessos/acessos.html">
+          <img src="../../Imagens/icons8-lock-48.png" alt="" />
         </a>
         <p class="tooltip">Acessos</p>
       </div>
       <div>
-        <a id="imgManuais" href="./manuais/manuais.html">
-          <img src="./Imagens/icons8-manual-80.png" alt="" />
+        <a id="imgManuais" href="../../manuais/manuais.html">
+          <img src="../../Imagens/icons8-manual-80.png" alt="" />
         </a>
         <p class="tooltip">Manuais</p>
       </div>
@@ -52,8 +52,8 @@
           id="setor"
           onchange="verificaSetor()"
         >
-        <option value="automacaopico">Automação - Pico</option>
         <option value="automacaovgr">Automação - VGR</option>
+          <option value="automacaopico" onclick="">Automação - Pico</option>
           <option value="eletricapico">Elétrica - Pico</option>
         </select>
       </div>
@@ -71,17 +71,6 @@
             />
           </div>
           <div>
-            <label for="matricula" onchange="atualizaParams()"
-              >Matricula
-            </label>
-            <input
-              type="text"
-              name="matricula"
-              id="Matricula"
-              onchange="atualizaParams()"
-            />
-          </div>
-          <div>
             <label for="turno">Turno</label>
             <select
               type="text"
@@ -90,10 +79,10 @@
               onchange="atualizaParams()"
             >
               <option value="empty"></option>
-              <option value=" A 06h00 - 18h00">Turno A 06h00 - 18h00</option>
-              <option value=" B 06h00 - 18h00">Turno B 06h00 - 18h00</option>
-              <option value=" C 18h00 - 06h00">Turno C 18h00 - 06h00</option>
-              <option value=" D 18h00 - 06h00">Turno D 18h00 - 06h00</option>
+              <option value="A">Turno A 06h00 - 18h00</option>
+              <option value="B">Turno B 06h00 - 18h00</option>
+              <option value="C">Turno C 18h00 - 06h00</option>
+              <option value="D">Turno D 18h00 - 06h00</option>
             </select>
           </div>
           <div>
@@ -106,7 +95,7 @@
             />
           </div>
         </div>
-        <div class="Right"><img id="imgPerfil" src="./Imagens/imgteste.jpg" alt="" />
+        <div class="Right"><img id="imgPerfil" src="../../Imagens/imgteste.jpg" alt="" />
         </div>
       </div>
       <hr width="90%" />
@@ -141,7 +130,7 @@
               name="Equipamento"
               id="Equipamento"
               placeholder="Ex: 610-EM-04"
-              onchange=""
+              oninput="ajustarLargura(this)"
             />
           </div>
         </div>
@@ -150,7 +139,7 @@
             class="flexStart"
             style="display: flex; justify-content: flex-end"
           >
-            <label for="acionamento">Acionamento</label>
+            <label for="acionamento">Horário da falha</label>
             <input
               type="datetime-local"
               onchange=""
@@ -158,15 +147,7 @@
               id="Acionamento"
             />
           </div>
-          <div class="flexEnd">
-            <label for="Encerramento">Encerramento</label>
-            <input
-              type="datetime-local"
-              onchange=""
-              name="Encerramento"
-              id="Encerramento"
-            />
-          </div>
+          
         </div>
       </section>
       <hr width="90%" />
@@ -182,7 +163,7 @@
             placeholder="Descreva o problema encontrado..."
           ></textarea>
         </div>
-        <div>
+        <div >
           <label for="solu">Solução</label>
           <textarea
             name="solu"
@@ -193,10 +174,8 @@
           ></textarea>
         </div>
       </section>
-      <div class="apont">
-        <label for="apontamento">Tempo de parada</label>
-        <input type="text" placeholder="Ex: 10 minutos" id="apontamento" />
-      </div>
+      
+      
       <div class="submit">
         <input onclick="atualizaSolucoes()" type="submit" value="Adicionar" />
       </div>
@@ -213,6 +192,6 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
   
-    <script src="./script.js"></script>
+    <script src="./vgr.js"></script>
   </body>
 </html>

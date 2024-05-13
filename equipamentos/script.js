@@ -1,33 +1,3 @@
-/*
-document.addEventListener("DOMContentLoaded", handleFile, false);
-var dados = "";
-function handleFile() {
-  var input = document.getElementById("input");
-  var filePath = "../DadosPico.xlsx";
-
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", filePath, true);
-  xhr.responseType = "arraybuffer";
-
-  xhr.onload = function (e) {
-    var data = new Uint8Array(xhr.response);
-    var workbook = XLSX.read(data, { type: "array" });
-
-    workbook.SheetNames.forEach(function (sheetName) {
-      var worksheet = workbook.Sheets[sheetName];
-      var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-
-      //console.log('Sheet Name:', sheetName);
-      //console.log('Sheet Data:', jsonData);
-      dados = jsonData;
-
-      // Faça o que desejar com os dados da planilha
-    });
-  };
-
-  xhr.send();
-}*/
-
 var dados = "";
 
 document.addEventListener("DOMContentLoaded", handleFile, false);
@@ -82,6 +52,7 @@ function verificarDados(params) {
   }
 }
 
+//Executa a função depois de 50ms
 setTimeout(verificarDados, 50);
 
 function excluirParagrafos() {

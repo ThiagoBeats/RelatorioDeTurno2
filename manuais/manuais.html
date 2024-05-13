@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuais</title>
+    <link rel="stylesheet" href="./manuais.css">
+    <link rel="stylesheet" href="../header.css" />
+    <link rel="shortcut icon" href="../Imagens/icons8-escritório-94.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <header>
+        <div>
+            <a id="imgPID" id="imgRelatorio" href="../PID/PID.html">
+                <img src="../Imagens/grafico-de-linha.png" alt="" />
+            </a>
+            <p class="tooltip">Encontrar PID</p>
+        </div>
+        <div>
+            <a id="imgRelatorio" href="../index.html">
+                <img src="../Imagens/icons8-relatório-100.png" alt="" />
+            </a>
+            <p class="tooltip">Relatório</p>
+        </div>
+        <div>
+            <a id="imgEquipamentos" href="../equipamentos/index.html">
+                <img src="../Imagens/icons8-equipment-64.png" alt="" />
+            </a>
+            <p class="tooltip">Equipamentos</p>
+        </div>
+        <div>
+            <a id="imgAcessos" href="../acessos/acessos.html">
+                <img src="../Imagens/icons8-lock-48.png" alt="" />
+            </a>
+            <p class="tooltip">Acessos</p>
+        </div>
+        <div>
+            <p id="imgManuais">
+                <img src="../Imagens/icons8-manual-80.png" alt="" />
+            </p>
+            <p class="tooltip">Manuais</p>
+        </div>
+    </header>
+    <main>
+
+
+        <div class="mainDiv" id="mainDiv">
+
+
+            <div class="header">
+                <p>Buscar manual </p>
+                <input id="tagInput" type="text" placeholder="Ex: Rockwell">
+
+
+            </div>
+
+            <p class="buttons" id="results">0 resultados encontrados </p>
+        </div>
+        <hr>
+        <div class="Informations" id="informations">
+
+        </div>
+    </main>
+    <div class="preview"></div>
+
+
+    <script type="module">
+        //Esse script precisa ser colocado no HTML
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAFoUHMYbkGZi_nHhtd1YpUJRwudrWf5eM",
+            authDomain: "vale-64f06.firebaseapp.com",
+            projectId: "vale-64f06",
+            storageBucket: "vale-64f06.appspot.com",
+            messagingSenderId: "588773080254",
+            appId: "1:588773080254:web:690d7eb9aba8d18c85b2ef"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        import { getDatabase, ref, child, get, set, update, remove } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+        const db = getDatabase();
+
+        //Campo de busca
+        let valor = document.getElementById("tagInput")
+
+        //Função para adicionar dados ao banco
+        function addData() {
+            set(ref(db, 'manuais/'), valor.value)
+                .then(() => { alert("Dado inserido") })
+                .catch(() => { alert("Erro") })
+        }
+
+        //Função para buscar dados no banco
+        function retData(chave) {
+            const dbRef = ref(db)
+            get(child(dbRef, chave)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    return snapshot.val()
+                    //console.log(snapshot.val())
+                } else {
+                    alert("Manual não existe")
+                }
+            })
+        }
+
+        //Pega o valor da busca e verifica os matches no banco
+        function buscaNoBanco(params) {
+            async function exemploAsync() {
+                const chaves = await buscarChaves();
+                return chaves;
+            }
+
+            exemploAsync()
+                .then((chaves) => {
+                    var contagem = 0;
+                    var tagToFind = document.getElementById("tagInput").value;
+                    for (let index = 0; index < chaves.length; index++) {
+                        retData(chaves[index]).then((data) => {
+                            console.log(data);
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.error("Erro ao buscar chaves:", error);
+                    // Trate erros aqui, se necessário
+                });
+        }
+
+        var chavesEnc
+        //Retorna todas as chaves do banco
+        function buscarChaves() {
+            const dbRef = ref(db);
+            return get(dbRef).then((snapshot) => {
+                const chaves = [];
+                if (snapshot.exists()) {
+                    snapshot.forEach((childSnapshot) => {
+                        const chave = childSnapshot.key;
+                        chaves.push(chave);
+                    });
+                } else {
+                    alert("Não existem dados no banco");
+                }
+                chavesEnc = chaves
+                return chaves;
+            });
+        }
+
+        // Função assíncrona para buscar chaves e atribuir a chavesEnc
+        async function buscarChavesAsync() {
+            try {
+                const chaves = await buscarChaves();
+                chavesEnc = chaves;
+                // Aqui você pode fazer algo com chavesEnc
+                console.log(chavesEnc);
+            } catch (error) {
+                console.error("Erro ao buscar chaves:", error);
+                // Trate erros aqui, se necessário
+            }
+        }
+
+        // Chamada da função buscarChavesAsync
+        buscarChavesAsync();
+
+        //Adiciona um listener no campo de busca 
+        valor.addEventListener("change", addData)
+        //valor.addEventListener("change", retData)
+        valor.addEventListener("change", buscarChaves)
+
+    </script>
+
+    <script src="./manuais.js"></script>
+</body>
+
+
+
+</html>

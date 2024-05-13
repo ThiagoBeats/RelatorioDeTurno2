@@ -1,24 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Esta função será executada quando o DOM estiver completamente carregado
-  document.getElementById("solucao").value = localStorage.getItem("relatorioSalvo")
-  document.getElementById("Turno").value = localStorage.getItem("turnoSalvo")
-  document.getElementById("Nome").value = localStorage.getItem("nomeSalvo")
-  document.getElementById("Matricula").value = localStorage.getItem("matriculaSalva")
-  atualizaParams()
+  document.getElementById("solucao").value =
+    localStorage.getItem("VGRrelatorioSalvo");
+  document.getElementById("Turno").value = localStorage.getItem("VGRturnoSalvo");
+  document.getElementById("Nome").value = localStorage.getItem("VGRnomeSalvo");
+  
   var elemento = document.getElementById("imgRelatorio");
   elemento.disabled = true;
+  atualizaParams()
 });
 
 var turno = document.getElementById("Turno").value;
 var nome = document.getElementById("Nome").value;
 var data = document.getElementById("Data").value;
-var matricula = document.getElementById("Matricula").value;
 
 var Processo = document.getElementById("Processo").value;
 var Incidente = document.getElementById("Incidente").value;
 var Equipamento = document.getElementById("Equipamento").value;
 var Acionamento = document.getElementById("Acionamento").value;
-var Encerramento = document.getElementById("Encerramento").value;
 
 var Problema = document.getElementById("probl").value;
 var Solucao = document.getElementById("solu").value;
@@ -65,7 +64,6 @@ var solucoes = [
 ];
 
 function atualizaSolucoes() {
-
   atualizaParams2();
   var textoProblema = document.getElementById("probl").value;
   var textoSolucao = document.getElementById("solu").value;
@@ -78,7 +76,7 @@ function atualizaSolucoes() {
     window.alert("Preencha a tag do equipamento");
   } else if (Acionamento.includes("undefined")) {
     window.alert("Preencha o horário do atendimento");
-  } else if (turno == "" || nome == "" || data == "" || matricula == "") {
+  } else if (turno == "" || nome == "" || data == "") {
     window.alert("Preencha seus dados pessoais e a data de hoje");
   } else if (textoProblema == "") {
     window.alert("Preencha o problema ocorrido");
@@ -89,59 +87,52 @@ function atualizaSolucoes() {
       if (problemas[index] === "" && problemas[index - 1] !== textoProblema) {
         problemas[index] = textoProblema;
         solucoes[index] = textoSolucao;
-        if (Encerramento.includes("undefined")) {
-          Encerramento = "Em aberto";
-        }
+        
         document.getElementById("solucao").value +=
-          "*Processo:* " +
+          "*USINA:* " +
           Processo +
-          "\n" +
-          "*Incidente:* " +
+          "\n\n" +
+          "*INCIDENTE:* " +
           Incidente +
-          "\n" +
-          "*Equipamento:* " +
+          "\n\n" +
+          "*EQUIPAMENTO:* " +
           Equipamento +
           "\n\n" +
-          "*Acionamento:* " +
+          "*Qual horário da falha:* " +
           Acionamento +
           "\n\n" +
-          "*Problema:* " +
+          "*Descreve o problema:* " +
           problemas[index] +
           "\n\n" +
           "*Solução:* " +
-          solucoes[index] +
-          "\n\n" +
-          Apontamento +
-          "\n\n*Encerramento:* " +
-          Encerramento +
-          "\n_\n";
+          solucoes[index] 
+          + "\n_\n\n" 
         document.getElementById("Incidente").value = "";
         document.getElementById("probl").value = "";
         document.getElementById("solu").value = "";
-        salvaDados()
+        salvaDados();
         break;
       }
     }
   }
 }
 
+function ajustarLargura(input) {
+  input.style.width = ((input.value.length + 10) * 6) + 'px';
+}
+
 function salvaDados() {
-  var relat = document.getElementById("solucao").value
-  localStorage.setItem("relatorioSalvo", relat)
-  localStorage.setItem("nomeSalvo", nome)
-  localStorage.setItem("matriculaSalva", matricula)
-  localStorage.setItem("turnoSalvo", turno)
+  var relat = document.getElementById("solucao").value;
+  localStorage.setItem("VGRrelatorioSalvo", relat);
+  localStorage.setItem("VGRnomeSalvo", nome);
+  localStorage.setItem("VGRturnoSalvo", turno);
 }
 var DadosDoUsuario;
 function atualizaParams() {
-
   imgPerfil();
   turno = document.getElementById("Turno").value;
   nome = document.getElementById("Nome").value;
   data = document.getElementById("Data").value;
-  matricula = document.getElementById("Matricula").value;
-
-  
 
   var ano = data.substring(0, 4);
   var mes = data.substring(5, 7);
@@ -149,17 +140,21 @@ function atualizaParams() {
 
   data = dia + "/" + mes + "/" + ano;
 
+  
   DadosDoUsuario =
-    "<strong>*Turno:* " +
-    turno +
+    "<strong>*TURMA " +
+    turno + "*" + 
     "</strong> - " +
     nome +
-    "<br>" +
-    "*Matricula:* " +
-    matricula +
-    "<br> *Data:* " +
-    data +
-    "<br><br>";
+    "<br><br> *DATA* <br><br>" +
+    data;
+
+    if (turno == "A" || turno == "B") {
+      DadosDoUsuario += "<br><br>*HORÁRIO*\n\n<br><br>06:00H às 18:00H<br>"
+    }
+    if (turno == "C" || turno == "D") {
+      DadosDoUsuario += "<br><br>*HORÁRIO*\n\n<br><br>18:00H às 06:00H<br>"
+    }
 
   document.getElementById("formatedText").innerHTML = DadosDoUsuario;
 }
@@ -169,8 +164,6 @@ function atualizaParams2() {
   Incidente = document.getElementById("Incidente").value;
   Equipamento = document.getElementById("Equipamento").value;
   Acionamento = document.getElementById("Acionamento").value;
-  Encerramento = document.getElementById("Encerramento").value;
-  Apontamento = document.getElementById("apontamento").value;
   if (Apontamento == "" || Apontamento == 0) {
     Apontamento = "*Não houve apontamento de parada*";
   } else {
@@ -182,18 +175,13 @@ function atualizaParams2() {
   var Adia = Acionamento.substring(8, 10);
   var horaAcionamento = Acionamento.split("T")[1];
 
-  var Eano = Encerramento.substring(0, 4);
-  var Emes = Encerramento.substring(5, 7);
-  var Edia = Encerramento.substring(8, 10);
-  var horaEncerramento = Encerramento.split("T")[1];
 
   Acionamento = Adia + "/" + Ames + "/" + Aano + " às " + horaAcionamento;
-  Encerramento = Edia + "/" + Emes + "/" + Eano + " às " + horaEncerramento;
 }
 
 var TextToCopy = "";
 function copiar() {
-  TextToCopy =
+  TextToCopy = "*RELATÓRIO DE TURNO*\n\n" + 
     document.getElementById("formatedText").innerText +
     "\n" +
     document.getElementById("solucao").value;
@@ -230,21 +218,21 @@ function imgPerfil(params) {
   var img = document.getElementById("imgPerfil");
   nome = document.getElementById("Nome");
   if (nome.value.toUpperCase().includes("PEDRO")) {
-    img.src = "./Imagens/pedro.jpg";
+    img.src = "../../Imagens/pedro.jpg";
   } else {
     if (nome.value.toUpperCase().includes("LORENA")) {
-      img.src = "./Imagens/lorena.jpg";
+      img.src = "../../Imagens/lorena.jpg";
     } else {
       if (
         nome.value.toUpperCase().includes("OTAVIO") ||
         nome.value.toUpperCase().includes("OTÁVIO")
       ) {
-        img.src = "./Imagens/otavio.jpg";
+        img.src = "../../Imagens/otavio.jpg";
       } else {
         if (nome.value.toUpperCase().includes("LUIS")) {
-          img.src = "./Imagens/luis.jpg";
+          img.src = "../../Imagens/luis.jpg";
         } else {
-          img.src = "./Imagens/imgteste.jpg";
+          img.src = "../../Imagens/imgteste.jpg";
         }
       }
     }
@@ -253,12 +241,12 @@ function imgPerfil(params) {
 
 //Verifica o setor para gerar o relatório
 function verificaSetor() {
-  setor = document.getElementById('setor')
-  if (setor.value == "automacaovgr"){
-    window.location.href = './setores/vgr/vgr.html'
-  }else{
-    if (setor.value == "eletricapico"){
-      window.location.href = './setores/eletricaPico/eletPico.html'
+  setor = document.getElementById("setor");
+  if (setor.value == "automacaopico") {
+    window.location.href = "../../index.html";
+  } else {
+    if (setor.value == "eletricapico") {
+      window.location.href = "../eletricaPico/eletPico.html";
+    }
   }
-}}
-
+}

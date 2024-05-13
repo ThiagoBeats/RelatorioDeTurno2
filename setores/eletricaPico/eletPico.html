@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relatório de turno</title>
+  <link rel="stylesheet" href="../../style.css" />
+  <link rel="stylesheet" href="../../header.css" />
+  <link rel="shortcut icon" href="../../Imagens/icons8-escritório-94.png" type="image/x-icon">
+</head>
+
+<body>
+  <header>
+    <div>
+      <a id="imgPID" id="imgRelatorio" href="../../PID/PID.html">
+        <img src="../../Imagens/grafico-de-linha.png" alt="" />
+      </a>
+      <p class="tooltip">Encontrar PID</p>
+    </div>
+    <div>
+      <p id="imgRelatorio">
+        <img src="../../Imagens/icons8-relatório-100.png" alt="" />
+      </p>
+      <p class="tooltip">Relatório</p>
+    </div>
+    <div>
+      <a id="imgEquipamentos" href="../../equipamentos/index.html">
+        <img src="../../Imagens/icons8-equipment-64.png" alt="" />
+      </a>
+      <p class="tooltip">Equipamentos</p>
+    </div>
+    <div>
+      <a id="imgAcessos" href="../../acessos/acessos.html">
+        <img src="../../Imagens/icons8-lock-48.png" alt="" />
+      </a>
+      <p class="tooltip">Acessos</p>
+    </div>
+    <div>
+      <a id="imgManuais" href="../../manuais/manuais.html">
+        <img src="../../Imagens/icons8-manual-80.png" alt="" />
+      </a>
+      <p class="tooltip">Manuais</p>
+    </div>
+  </header>
+
+
+  <main>
+    <div class="setor">
+      <select type="text" name="setor" id="setor" onchange="verificaSetor()">
+        <option value="eletricapico">Elétrica - Pico</option>
+        <option value="automacaopico">Automação - Pico</option>
+        <option value="automacaovgr">Automação - VGR</option>
+      </select>
+    </div>
+    <hr width="90%" />
+    <div class="mainDiv">
+      <div class="Left">
+        <div>
+          <label for="turno">Turno</label>
+          <select type="text" name="turno" id="Turno" onchange="atualizaParams()">
+            <option value="empty"></option>
+            <option value="A">Turno A 06h00 - 18h00</option>
+            <option value="B">Turno B 06h00 - 18h00</option>
+            <option value="C">Turno C 18h00 - 06h00</option>
+            <option value="D">Turno D 18h00 - 06h00</option>
+          </select>
+        </div>
+        <div>
+          <label for="disciplina" onchange="atualizaParams()">Disciplina
+          </label>
+          <input type="text" name="disciplina" id="disciplina" onchange="atualizaParams()" oninput="ajustarLargura(this)" />
+        </div>
+        <div>
+          <label for="Compl">Complexo</label>
+          <input type="text" name="Compl" id="complexo" onchange="atualizaParams()" />
+        </div>
+        <div>
+          <label for="Name">Equipe (separar nomes por vírgula)</label>
+          <input type="text" name="Name" id="equipe" autocomplete="given-name" onchange="atualizaParams()" oninput="ajustarLargura(this)"/>
+        </div>
+
+        <div>
+          <label for="data">Data</label>
+          <input type="date" name="data" id="Data" onchange="atualizaParams()" />
+        </div>
+      </div>
+      <div class="Right"><img id="imgPerfil" src="../../Imagens/imgteste.jpg" alt="" />
+      </div>
+    </div>
+    <hr width="90%" />
+
+    <section class="secondarySection">
+      <div class="div1">
+        <div class="flexStart">
+          <label for="Processo">Usina</label>
+          <input type="text" name="Processo" id="Processo" value="" placeholder="Ex: ITM-D"
+            onchange="atualizaParams2()" />
+        </div>
+        <div class="flexEnd">
+          <label for="Eqp">Equipamento</label>
+          <input type="text" name="Equipamento" id="Equipamento" placeholder="Ex: 610-EM-04" oninput="ajustarLargura(this)" />
+        </div>
+        <div>
+          <label for="motivo">Motivo</label>
+          <input type="text" name="motivo" id="motivo" placeholder="Ex: Sobrecarga" onchange="" />
+        </div>
+
+      </div>
+
+    </section>
+    <hr width="90%" />
+
+    <section class="lastSection">
+      <div>
+        <label for="probl">Causa</label>
+        <textarea name="probl" id="probl" cols="2" rows="10" placeholder="Descreva o problema encontrado..."></textarea>
+      </div>
+      <div>
+        <label for="solu">Solução</label>
+        <textarea name="solu" id="solu" cols="2" rows="10"
+          placeholder="Descreva detalhadamente os passos seguidos para resolver..."></textarea>
+      </div>
+    </section>
+    <div class="final">
+      <div class="apont2">
+        <label for="apontamento">Tempo de parada</label>
+        <input type="text" placeholder="Ex: 02:30" id="apontamento" />
+      </div>
+      <div>
+        <label for="status">Status</label>
+        <select type="text" name="status" id="status" onchange="atualizaParams()">
+          <option value=""></option>
+          <option value="✅Liberado">✅Liberado</option>
+          <option value="❌Pendente">❌Pendente</option>
+        </select>
+      </div>
+
+      <div class="obs">
+        <label for="apontamento">Observações</label>
+        <input type="text" placeholder="" id="obs" oninput="ajustarLargura(this)"/>
+      </div>
+    </div>
+
+    <hr width="90%" />
+    <div class="submit">
+      <input onclick="atualizaSolucoes()" type="submit" value="Adicionar" />
+    </div>
+  </main>
+  <div class="preview">
+    <h1 class="title">Relatório de turno</h1>
+    <p id="formatedText" class="dadosDoUsuario"></p>
+    <textarea id="solucao"></textarea>
+    <div class="buttons">
+      <button class="copiarTexto" onclick="apagar()">Apagar Relatório</button>
+      <button class="apagarTexto" onclick="copiar()">Copiar texto</button>
+      <button class="apagarTexto" onclick="encaminhar()"><img width="16" height="16"
+          src="https://img.icons8.com/officel/16/whatsapp.png" alt="whatsapp" />Encaminhar</button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
+
+  <script src="./eletPico.js"></script>
+</body>
+
+</html>

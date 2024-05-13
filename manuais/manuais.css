@@ -1,0 +1,248 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Roboto:wght@300&display=swap");
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(0, 0, 0);
+  border-radius: 1px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+  ::-webkit-scrollbar {
+    width: 50px;
+  }
+}
+
+body {
+  width: 99%;
+  height: 97vh;
+  min-height: 10vh;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../Imagens/background.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  font-size: 16pt;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  color: white;
+}
+
+main {
+  position: absolute;
+  top: 2vh;
+  left: calc(5vw + 6px);
+  background: rgba(70, 30, 30, 0.45);
+  border-radius: 5px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.4px);
+  -webkit-backdrop-filter: blur(7.4px);
+  height: 95vh;
+  width: calc(100vw - 12px - 15vw);
+  gap: 10px;
+  overflow-x: hidden;
+}
+
+.preview {
+  position: absolute;
+  top: 2vh;
+  right: 3px;
+  background: rgba(100, 43, 43, 0.45);
+  border-radius: 5px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.4px);
+  -webkit-backdrop-filter: blur(7.4px);
+  height: 95vh;
+  width: 10vw;
+}
+
+.mainDiv {
+  padding: 33px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2vh;
+}
+
+input,
+select {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 25px;
+  border-radius: 10px;
+  border: solid lightgray 2px;
+  font-family: "Roboto";
+  text-align: center;
+  width: auto;
+  height: 30px;
+}
+
+.preview {
+  > h1 {
+    text-align: center;
+    text-decoration: underline;
+    font-size: 2rem;
+  }
+  > p {
+    font-size: 1rem;
+  }
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10%;
+  > button {
+    margin-bottom: 5%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 25px;
+    border-radius: 10px;
+    border: solid lightgray 2px;
+    font-family: "Roboto";
+    text-align: center;
+    width: auto;
+    height: 30px;
+  }
+}
+
+.preview {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+  > textarea {
+    font-size: 1rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    border: none;
+    color: white;
+    padding-left: 10px;
+    resize: none;
+    width: 95%;
+    height: 50%;
+    margin-bottom: 10%;
+    background-color: transparent;
+  }
+}
+
+hr {
+  width: 90%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  > input {
+    width: 20vw;
+  }
+}
+
+.Informations {
+  padding-left: 3%;
+  padding-right: 3%;
+  gap: 0px;
+  height: 100%;
+}
+
+textarea {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  font-size: 16pt;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  color: white;
+  padding: 2%;
+}
+.btnRefresh {
+  background-color: blue;
+  text-align: center;
+}
+
+#paragr {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid darkcyan;
+  padding: 1%;
+  color: black;
+}
+
+#texto{
+  width: 100%;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.head {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 1px solid darkgrey;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  > p {
+    word-wrap: break-word;
+    text-align: left;
+    color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+  }}
+
+  .head:nth-child(odd) {
+    background-color: lightgray;
+  }
+  .head:nth-child(even) {
+    background-color: white;
+  }
+
+ 
+
+@media screen and (max-width: 950px) {
+  main {
+    top: 66px;
+    left: 3px;
+    height: calc(99vh - 66px);
+    width: calc(100vw - 6px);
+  }
+  .preview {
+    visibility: hidden;
+  }
+}
