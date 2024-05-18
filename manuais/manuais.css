@@ -24,7 +24,8 @@
     width: 50px;
   }
 }
-
+a{
+  text-decoration: none;}
 body {
   width: 99%;
   height: 97vh;
@@ -110,6 +111,8 @@ select {
   overflow-x: hidden;
 }
 
+
+
 .buttons {
   display: flex;
   align-items: center;
@@ -132,6 +135,8 @@ select {
     height: 30px;
   }
 }
+
+
 
 .preview {
   display: flex;
@@ -170,6 +175,8 @@ hr {
 }
 
 .Informations {
+  display: flex;
+  flex-direction: column;
   padding-left: 3%;
   padding-right: 3%;
   gap: 0px;
@@ -245,4 +252,35 @@ textarea {
   .preview {
     visibility: hidden;
   }
+}
+
+.addDoc{
+  width: 100%;
+  height: auto;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  padding: 5px;
+  transition: 0.3s;
+  >input{
+    min-width: 200px;
+    width: 30%;
+  }
+  >button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 10px;
+    border: solid lightgray 3px;
+    font-family: "Roboto";
+    text-align: center;
+    width: auto;
+    height: 50px;
+  }
+
+
 }

@@ -91,7 +91,7 @@ function busca() {
           dados[index][3];
         if (typeof dados[index][4] != "undefined") {
           textOutput +=
-            "  -    Comentários: " + dados[index][4].toLowerCase() + "\n\n";
+            "  -  " + dados[index][4].toLowerCase() + "\n\n";
         }
         var paragr = document.createElement("p");
         paragr.textContent = textOutput;
@@ -109,7 +109,6 @@ function busca() {
   }
   document.getElementById("results").innerHTML =
     contagem + " Resultados encontrados";
-  //document.getElementById("return").value = textOutput;
 }
 
 function busca2() {
@@ -125,20 +124,7 @@ function busca2() {
           .includes(tagToFind.toUpperCase().replace(/-/g, "").trim())
       ) {
         contagem += 1;
-        // textOutput =
-        //   dados[index][0] +
-        //   " - " +
-        //   dados[index][1] +
-        //   "  -  Tag: " +
-        //   dados[index][2] +
-        //   "  -  PLC: " +
-        //   dados[index][3] +
-        //   "  -  Localidade: " +
-        //   dados[index][4];
-        // if (typeof dados[index][5] != "undefined") {
-        //   textOutput +=
-        //     "  -    Comentários: " + dados[index][5].toLowerCase() + "\n\n";
-        // }
+
         var head = document.createElement("div");
         head.className = 'head'
         for (let index2 = 0; index2 < 6; index2++) {
@@ -154,5 +140,4 @@ function busca2() {
   }
   document.getElementById("results").innerHTML =
     contagem + " Resultados encontrados";
-  //document.getElementById("return").value = textOutput;
 }
